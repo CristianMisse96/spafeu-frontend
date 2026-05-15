@@ -136,7 +136,7 @@
           </div>
 
           <!-- FORM -->
-          <form class="mt-10 space-y-6">
+          <form class="mt-10 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
             <!-- Email -->
             <div>
@@ -147,9 +147,18 @@
 
               <input
                 type="email"
-                placeholder="ejemplo@universidad.edu"
+                placeholder="Ingrese username o correo"
                 class="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-              />
+                formControlName="email"
+                [class.border-red-500]="formUtils.isValidField(loginForm,'email')" 
+                />
+
+                 @if (formUtils.isValidField(loginForm,'email')) {
+                            <small class="text-red-500 text-xs">
+                                {{formUtils.getFieldError(loginForm,'email')}}
+                            </small>
+        
+              }
 
             </div>
 
@@ -162,7 +171,7 @@
                   Contraseña
                 </label>
 
-                <a href="#recuperar" class="text-sm font-medium text-sky-600 hover:text-sky-700">
+                <a routerLink="/auth/forgot-password" class="text-sm font-medium text-sky-600 hover:text-sky-700">
                   ¿Olvidaste tu contraseña?
                 </a>
 
@@ -172,7 +181,15 @@
                 type="password"
                 placeholder="••••••••"
                 class="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-              />
+                formControlName="password"
+                [class.border-red-500]="formUtils.isValidField(loginForm,'password')" />
+
+                 @if (formUtils.isValidField(loginForm,'password')) {
+                            <span class="text-red-500 text-xs">
+                                {{formUtils.getFieldError(loginForm,'password')}}
+                            </span>
+        
+                 }
 
             </div>
 
@@ -184,6 +201,7 @@
                 <input
                   type="checkbox"
                   class="h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-500"
+                  formControlName="remember" 
                 />
 
                 Recordarme
@@ -221,7 +239,7 @@
             ¿No tienes cuenta?
 
             <a
-              href="#registro"
+              routerLink="/auth/register"
               class="font-semibold text-sky-600 hover:text-sky-700"
             >
               Crear cuenta
