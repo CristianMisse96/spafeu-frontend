@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { EstadoKycEnum } from '@shared/enums/estadokyc.enum';
 import { Auth } from '@auth/services/auth';
+import { Header } from "@shared/components/header/header";
 
 @Component({
   standalone:true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './dashboard-user-layout.component.html',
   styleUrl: './dashboard-user-layout.component.css'
 })

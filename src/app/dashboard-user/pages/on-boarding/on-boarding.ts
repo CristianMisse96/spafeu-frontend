@@ -41,7 +41,7 @@ throw new Error('Method not implemented.');
       fullName: [null, Validators.required],
       campus: [null, Validators.required],
       program: [null, Validators.required],
-      semester: [null, Validators.required],
+      semester: [null, [Validators.required,Validators.min(1), Validators.max(10)]],
       birthDate: [null, Validators.required],
       sex: [null, Validators.required],
       weight: [null, Validators.required],
