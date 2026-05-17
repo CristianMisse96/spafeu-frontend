@@ -1,20 +1,25 @@
 <!-- ================================= -->
-<!-- LOGIN PAGE -->
+<!-- LOGIN SPAFEU -->
 <!-- ================================= -->
 
 <main class="relative min-h-screen overflow-hidden bg-slate-950">
 
   <!-- ================================= -->
-  <!-- BACKGROUND EFFECTS -->
+  <!-- BACKGROUND IMAGE -->
   <!-- ================================= -->
 
-  <div class="absolute inset-0 overflow-hidden">
+  <div class="absolute inset-0">
 
-    <!-- Glow 1 -->
-    <div class="absolute -left-30 -top-30 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl"></div>
+    <!-- Background image -->
+    <img src="/login-bg.jpg" alt="Fitness Background" class="h-full w-full object-cover opacity-30" />
 
-    <!-- Glow 2 -->
-    <div class="absolute -bottom-37.5 -right-25 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl"></div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-linear-to-br from-slate-950/95 via-violet-950/90 to-sky-950/90"></div>
+
+    <!-- Glow -->
+    <div class="absolute -top-37.5 -left-25 h-125 w-125 rounded-full bg-sky-500/20 blur-3xl"></div>
+
+    <div class="absolute -bottom-30 -right-25 h-125 w-125 rounded-full bg-cyan-400/20 blur-3xl"></div>
 
   </div>
 
@@ -24,74 +29,45 @@
 
   <div class="relative z-10 flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
 
-    <!-- Card -->
-    <div class="grid w-full max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl lg:grid-cols-2">
+    <!-- ================================= -->
+    <!-- MAIN CONTAINER -->
+    <!-- ================================= -->
+
+    <div class="grid w-full max-w-7xl items-center gap-16 lg:grid-cols-2">
 
       <!-- ================================= -->
       <!-- LEFT SIDE -->
       <!-- ================================= -->
 
-      <div class="hidden lg:flex relative items-center justify-center overflow-hidden bg-linear-to-br from-sky-600 to-cyan-500 p-12">
+      <div class="hidden lg:block">
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/10"></div>
+        <!-- Logo -->
+        <div class="mb-10 inline-flex rounded-4xl p-6">
 
-        <!-- Content -->
-        <div class="relative z-10 max-w-md text-white">
-
-          <!-- Logo -->
-          <div class="mb-8 flex items-center gap-4">
-
-            <img
-              src="/logo.png"
-              alt="SPAFEU"
-              class="h-16 w-auto object-contain"
-            />
-
-            <div>
-
-              <h2 class="text-2xl font-black tracking-wide">
-                SPAFEU
-              </h2>
-
-              <p class="text-sky-100">
-                Actividad Física Universitaria
-              </p>
-
-            </div>
-
-          </div>
-
-          <!-- Text -->
-          <h1 class="text-5xl font-black leading-tight">
-            Bienvenido de nuevo.
-          </h1>
-
-          <p class="mt-6 text-lg leading-relaxed text-sky-100">
-            Accede a tu plataforma universitaria de actividad física y continúa mejorando tu bienestar.
-          </p>
-
-          <!-- Features -->
-          <div class="mt-10 space-y-4">
-
-            <div class="flex items-center gap-3">
-              <div class="h-3 w-3 rounded-full bg-white"></div>
-              <span>Seguimiento personalizado</span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="h-3 w-3 rounded-full bg-white"></div>
-              <span>Rutinas inteligentes</span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="h-3 w-3 rounded-full bg-white"></div>
-              <span>Evaluación física digital</span>
-            </div>
-
-          </div>
+          <img src="/logo.png" alt="SPAFEU" class="h-24 xlw-auto object-contain rounded-2xl" />
 
         </div>
+
+        <!-- Title -->
+        <h1 class="max-w-2xl text-7xl font-black leading-[0.95] tracking-tight text-white">
+
+          Transforma tu
+          <span class="bg-linear-to-r from-sky-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
+            bienestar físico
+          </span>
+
+        </h1>
+
+        <!-- Description -->
+        <p class="mt-8 max-w-xl text-xl leading-relaxed text-slate-300">
+
+          Accede a tu plataforma universitaria inteligente y lleva el control de tu actividad física, progreso y
+          bienestar.
+
+        </p>
+
+        <!-- Features -->
+
 
       </div>
 
@@ -99,135 +75,138 @@
       <!-- RIGHT SIDE -->
       <!-- ================================= -->
 
-      <div class="flex items-center justify-center bg-white px-6 py-10 sm:px-10 lg:px-14">
+      <div class="flex justify-center">
 
-        <div class="w-full max-w-md">
+        <!-- LOGIN CARD -->
+        <div
+          class="relative w-full max-w-md overflow-hidden rounded-[40px] border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-2xl sm:p-10">
 
-          <!-- Mobile Logo -->
-          <div class="mb-8 flex flex-col items-center text-center lg:hidden">
+          <!-- Internal glow -->
+          <div class="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-sky-500/10"></div>
 
-            <img
-              src="/logo.png"
-              alt="SPAFEU"
-              class="h-16 w-auto object-contain"
-            />
+          <!-- CONTENT -->
+          <div class="relative z-10">
 
-            <h2 class="mt-4 text-2xl font-black text-slate-900">
-              SPAFEU
-            </h2>
+            <!-- Mobile logo -->
+            <div class="mb-10 flex flex-col items-center text-center lg:hidden">
 
-            <p class="mt-1 text-sm text-slate-500">
-              Actividad Física Universitaria
-            </p>
+              <div class="rounded-3xl p-5">
 
-          </div>
+                <img src="/logo.png" alt="SPAFEU" class="h-25 w-auto object-contain rounded-2xl" />
 
-          <!-- Title -->
-          <div>
-
-            <h1 class="text-4xl font-black tracking-tight text-slate-900">
-              Iniciar sesión
-            </h1>
-
-            <p class="mt-3 text-slate-500">
-              Ingresa tus credenciales para acceder a la plataforma.
-            </p>
-
-          </div>
-
-          <!-- FORM -->
-          <form class="mt-10 space-y-6">
-
-            <!-- Email -->
-            <div>
-
-              <label class="mb-2 block text-sm font-semibold text-slate-700">
-                Correo electrónico
-              </label>
-
-              <input
-                type="email"
-                placeholder="ejemplo@universidad.edu"
-                class="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-              />
+              </div>
 
             </div>
 
-            <!-- Password -->
-            <div>
+            <!-- Welcome -->
+            <div class="text-center">
 
-              <div class="mb-2 flex items-center justify-between">
+              <h2 class="text-4xl font-black text-white">
+                Bienvenido
+              </h2>
 
-                <label class="text-sm font-semibold text-slate-700">
-                  Contraseña
+              <p class="mt-3 text-slate-300">
+                Ingresa a tu cuenta SPAFEU
+              </p>
+
+            </div>
+
+            <!-- FORM -->
+            <form class="mt-10 space-y-6">
+
+              <!-- Email -->
+              <div>
+
+                <label class="mb-3 block text-sm font-semibold text-slate-200">
+                  Correo institucional
                 </label>
 
-                <a href="#recuperar" class="text-sm font-medium text-sky-600 hover:text-sky-700">
-                  ¿Olvidaste tu contraseña?
+                <input type="email" placeholder="ejemplo@universidad.edu"
+                  class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" />
+
+              </div>
+
+              <!-- Password -->
+              <div>
+
+                <div class="mb-3 flex items-center justify-between">
+
+                  <label class="text-sm font-semibold text-slate-200">
+                    Contraseña
+                  </label>
+
+                </div>
+
+                <input type="password" placeholder="••••••••"
+                  class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" />
+
+              </div>
+
+              <!-- Remember -->
+              <div class="flex items-center justify-between">
+
+                <label class="flex items-center gap-3 text-sm text-slate-300">
+
+                  <input type="checkbox"
+                    class="h-4 w-4 rounded border-white/20 bg-white/10 text-sky-500 focus:ring-sky-500" />
+
+                  Recordarme
+
+                </label>
+
+                <a href="#" class="text-sm text-sky-300 hover:text-white">
+                  Recuperar
                 </a>
 
               </div>
 
-              <input
-                type="password"
-                placeholder="••••••••"
-                class="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-              />
+              <!-- BUTTON -->
+              <button type="submit"
+                class="group w-full rounded-2xl bg-linear-to-r from-sky-500 via-cyan-400 to-violet-500 px-6 py-4 text-lg font-bold text-white shadow-2xl shadow-sky-500/30 transition duration-300 hover:scale-[1.02]">
+
+                <span class="flex items-center justify-center">
+
+                  Ingresar
+
+                  <span class="ml-3 transition group-hover:translate-x-1">
+                    →
+                  </span>
+
+                </span>
+
+              </button>
+
+            </form>
+
+            <!-- Divider -->
+            <div class="my-8 flex items-center gap-4">
+
+              <div class="h-px flex-1 bg-white/10"></div>
+
+              <span class="text-sm text-slate-400">
+                o
+              </span>
+
+              <div class="h-px flex-1 bg-white/10"></div>
 
             </div>
 
-            <!-- Remember -->
-            <div class="flex items-center justify-between gap-4">
+            <!-- Register -->
+            <div class="text-center">
 
-              <label class="flex items-center gap-3 text-sm text-slate-600">
+              <p class="text-slate-300">
 
-                <input
-                  type="checkbox"
-                  class="h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-500"
-                />
+                ¿No tienes cuenta?
 
-                Recordarme
+                <a href="#" class="font-bold text-sky-300 hover:text-white">
+                  Crear cuenta
+                </a>
 
-              </label>
+              </p>
 
             </div>
-
-            <!-- Button -->
-            <button
-              type="submit"
-              class="w-full rounded-2xl bg-sky-600 px-6 py-4 text-lg font-bold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700 hover:shadow-xl"
-            >
-              Ingresar
-            </button>
-
-          </form>
-
-          <!-- Divider -->
-          <div class="my-8 flex items-center gap-4">
-
-            <div class="h-px flex-1 bg-slate-200"></div>
-
-            <span class="text-sm text-slate-400">
-              o
-            </span>
-
-            <div class="h-px flex-1 bg-slate-200"></div>
 
           </div>
-
-          <!-- Register -->
-          <p class="text-center text-sm text-slate-600">
-
-            ¿No tienes cuenta?
-
-            <a
-              href="#registro"
-              class="font-semibold text-sky-600 hover:text-sky-700"
-            >
-              Crear cuenta
-            </a>
-
-          </p>
 
         </div>
 
