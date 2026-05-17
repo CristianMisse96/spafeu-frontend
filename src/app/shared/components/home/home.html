@@ -1,267 +1,509 @@
-<!-- ========================= -->
-<!-- HOME / LANDING PAGE -->
-<!-- ========================= -->
+<!-- ================================= -->
+<!-- HERO SECTION PREMIUM -->
+<!-- ================================= -->
 
-<main class="overflow-hidden bg-white">
+<section class="relative overflow-hidden bg-slate-950">
 
   <!-- ================================= -->
-  <!-- HERO SECTION -->
+  <!-- BACKGROUND -->
   <!-- ================================= -->
 
-  <section class="relative">
+  <div class="absolute inset-0 overflow-hidden">
 
-    <!-- Background decor -->
-    <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- Gradient mesh -->
+    <div class="absolute -top-50 -left-25 h-125 w-125 rounded-full bg-sky-500/30 blur-3xl"></div>
 
-      <div class="absolute top-0 left-0 h-72 w-72 rounded-full bg-sky-100 blur-3xl"></div>
+    <div class="absolute -right-30 top-25 h-112.5 w-112.5 rounded-full bg-cyan-400/20 blur-3xl"></div>
 
-      <div class="absolute right-0 top-20 h-96 w-96 rounded-full bg-cyan-100 blur-3xl"></div>
+    <div class="absolute -bottom-37.5 left-[30%] h-100 w-100 rounded-full bg-violet-500/20 blur-3xl"></div>
+
+    <!-- Grid effect -->
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[60px_60px]">
+    </div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- CONTENT -->
+  <!-- ================================= -->
+
+  <div class="relative z-1 mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8 lg:py-">
+
+    <div class="grid items-center gap-20 lg:grid-cols-2">
+
+      <!-- ================================= -->
+      <!-- LEFT -->
+      <!-- ================================= -->
+
+      <div>
+
+        <!-- LOGO -->
+        <div class="mb-20">
+
+          <div class="inline-flex backdrop-blur-xl">
+
+            <img clas src="/logo.png" alt="SPAFEU" class="h-20 w-auto object-contain sm:h-24 lg:h-28 rounded-3xl" />
+
+          </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+        <h1 class="max-w-3xl text-5xl font-black leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+
+          Activa tu
+          <span class="bg-linear-to-r from-sky-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
+            mejor versión
+          </span>
+
+          dentro y fuera de la universidad.
+
+        </h1>
+
+        <!-- DESCRIPTION -->
+        <p class="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+
+          Mejora tu salud física, combate el sedentarismo y lleva seguimiento inteligente de tu progreso con una
+          experiencia moderna, dinámica y diseñada para estudiantes universitarios.
+
+        </p>
+
+        <!-- BUTTONS -->
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+
+          <!-- Primary -->
+          <a href="#registro"
+            class="group inline-flex items-center justify-center rounded-2xl bg-linear-to-r from-sky-500 to-cyan-400 px-8 py-5 text-lg font-bold text-white shadow-2xl shadow-sky-500/30 transition duration-300 hover:scale-[1.03]">
+
+            Comenzar ahora
+
+            <span class="ml-3 transition group-hover:translate-x-1">
+              →
+            </span>
+
+          </a>
+
+          <!-- Secondary -->
+          <a href="#conocer"
+            class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-8 py-5 text-lg font-semibold text-white backdrop-blur-xl transition hover:bg-white/10">
+
+            Explorar plataforma
+
+          </a>
+
+        </div>
+
+        <!-- STATS -->
+        <div class="mt-14 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
+
+          <div>
+
+            <div class="text-4xl font-black text-white">
+              +7
+            </div>
+
+            <div class="mt-2 text-sm text-slate-400">
+              Módulos inteligentes
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="text-4xl font-black text-white">
+              100%
+            </div>
+
+            <div class="mt-2 text-sm text-slate-400">
+              Responsive
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="text-4xl font-black text-white">
+              24/7
+            </div>
+
+            <div class="mt-2 text-sm text-slate-400">
+              Acceso web
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================================= -->
+      <!-- RIGHT -->
+      <!-- ================================= -->
+
+      <div class="relative">
+
+        <!-- MAIN CARD -->
+        <div class="relative rounded-4xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-xl">
+
+          <!-- Main image -->
+          <img src="/actividadfisica.png" alt="Actividad física" class="h-130 w-full rounded-[28px] object-cover" />
+
+          <!-- Floating card -->
+          <div
+            class="absolute -bottom-10 left-1/2 w-[88%] -translate-x-1/2 rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl backdrop-blur-xl">
+
+            <!-- Top -->
+            <div class="flex items-center justify-between">
+
+              <div>
+
+                <p class="text-sm text-slate-400">
+                  Nivel de actividad
+                </p>
+
+                <h3 class="mt-1 text-2xl font-bold text-white">
+                  Moderado
+                </h3>
+
+              </div>
+
+              <div class="rounded-2xl bg-emerald-500/20 px-4 py-2 text-sm font-bold text-emerald-300">
+                Activo
+              </div>
+
+            </div>
+
+            <!-- Progress -->
+            <div class="mt-6">
+
+              <div class="mb-2 flex items-center justify-between">
+
+                <span class="text-sm text-slate-400">
+                  Progreso semanal
+                </span>
+
+                <span class="text-sm font-bold text-white">
+                  78%
+                </span>
+
+              </div>
+
+              <div class="h-4 overflow-hidden rounded-full bg-white/10">
+
+                <div class="h-full w-[78%] rounded-full bg-linear-to-r from-sky-400 to-cyan-300"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
-    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+  </div>
 
-      <div class="grid items-center gap-14 lg:grid-cols-2">
+</section>
 
-        <!-- LEFT -->
-        <div>
+<!-- ================================= -->
+<!-- MODULES SECTION
+<!-- ================================= -->
 
-          <!-- Badge -->
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
-            <span class="h-2 w-2 rounded-full bg-sky-500"></span>
-            Plataforma Universitaria de Actividad Física
+<section class="relative overflow-hidden bg-slate-950 py-24">
+
+  <!-- ================================= -->
+  <!-- BACKGROUND -->
+  <!-- ================================= -->
+
+  <div class="absolute inset-0 overflow-hidden">
+
+    <div class="absolute top-0 left-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"></div>
+
+    <div class="absolute bottom-0 right-0 h-125 w-125 rounded-full bg-violet-500/10 blur-3xl"></div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- CONTENT -->
+  <!-- ================================= -->
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- HEADING -->
+    <div class="mx-auto max-w-3xl text-center">
+
+      <!-- Badge -->
+      <div
+        class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur-xl">
+
+        <div class="h-2 w-2 rounded-full bg-cyan-400"></div>
+
+        <span class="text-sm font-medium text-slate-300">
+          Plataforma inteligente universitaria
+        </span>
+
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-4xl font-black tracking-tight text-white sm:text-5xl">
+
+        Todo lo que necesitas
+        <span class="bg-linear-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
+          en un solo lugar
+        </span>
+
+      </h2>
+
+      <!-- Description -->
+      <p class="mt-6 text-lg leading-relaxed text-slate-400">
+
+        Explora herramientas inteligentes diseñadas para mejorar tu actividad física,
+        bienestar y rendimiento universitario.
+
+      </p>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- MODULES GRID -->
+    <!-- ================================= -->
+
+    <div class="mt-20 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+
+      <!-- ================================= -->
+      <!-- CARD 1 -->
+      <!-- ================================= -->
+
+      <div
+        class="group relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-sky-400/40 hover:bg-white/10">
+
+        <!-- Glow -->
+        <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+
+          <div class="absolute inset-0 bg-linear-to-br from-sky-500/10 to-cyan-400/10"></div>
+
+        </div>
+
+        <!-- Icon -->
+        <div class="relative z-10">
+
+          <div
+            class="flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-br from-sky-500 to-cyan-400 text-4xl shadow-2xl shadow-sky-500/20">
+
+            📋
+
           </div>
 
           <!-- Title -->
-          <h1 class="text-4xl font-black leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          <h3 class="mt-8 text-2xl font-bold text-white">
 
-            Mejora tu
-            <span class="text-sky-600">
-              salud física
-            </span>
+            Evaluación Inteligente
 
-            y transforma tu bienestar universitario.
-          </h1>
-
-          <!-- Description -->
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-
-            SPAFEU ayuda a estudiantes universitarios a mejorar su actividad física mediante evaluación personalizada, seguimiento inteligente y acompañamiento profesional.
-
-          </p>
-
-          <!-- Buttons -->
-          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-
-            <a
-              href="#registro"
-              class="inline-flex items-center justify-center rounded-xl bg-sky-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700"
-            >
-              Comenzar ahora
-            </a>
-
-            <a
-              href="#evaluacion"
-              class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-4 text-base font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              Conocer más
-            </a>
-
-          </div>
-
-          <!-- Stats -->
-          <div class="mt-10 grid grid-cols-3 gap-6 border-t border-slate-200 pt-8">
-
-            <div>
-              <div class="text-3xl font-black text-slate-900">
-                100%
-              </div>
-
-              <div class="mt-1 text-sm text-slate-500">
-                Responsive
-              </div>
-            </div>
-
-            <div>
-              <div class="text-3xl font-black text-slate-900">
-                +7
-              </div>
-
-              <div class="mt-1 text-sm text-slate-500">
-                Módulos
-              </div>
-            </div>
-
-            <div>
-              <div class="text-3xl font-black text-slate-900">
-                24/7
-              </div>
-
-              <div class="mt-1 text-sm text-slate-500">
-                Acceso web
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- RIGHT -->
-        <div class="relative">
-
-          <!-- Main card -->
-          <div class="rounded-3xl border border-slate-200 bg-white p- shadow-2xl shadow-slate-200">
-
-            <!-- Image -->
-            <img
-              src="/actividadfisica.png"
-              alt="Actividad física universitaria"
-              class="h-[420px] w-full rounded-2xl object-cover"
-            />
-
-            <!-- Floating card -->
-            <div class="absolute -bottom-6 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
-
-              <div class="flex items-center justify-between">
-
-                <div>
-                  <p class="text-sm font-medium text-slate-500">
-                    Nivel de actividad
-                  </p>
-
-                  <h3 class="mt-1 text-xl font-bold text-slate-900">
-                    Moderado
-                  </h3>
-                </div>
-
-                <div class="rounded-xl bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
-                  Activo
-                </div>
-
-              </div>
-
-              <!-- Progress -->
-              <div class="mt-5">
-
-                <div class="mb-2 flex items-center justify-between text-sm">
-                  <span class="text-slate-500">
-                    Progreso semanal
-                  </span>
-
-                  <span class="font-semibold text-slate-700">
-                    78%
-                  </span>
-                </div>
-
-                <div class="h-3 overflow-hidden rounded-full bg-slate-100">
-
-                  <div class="h-full w-[78%] rounded-full bg-sky-500"></div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ================================= -->
-  <!-- MODULES SECTION -->
-  <!-- ================================= -->
-
-  <section class="bg-slate-50 py-20">
-
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-      <!-- Heading -->
-      <div class="mx-auto max-w-3xl text-center">
-
-        <h2 class="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
-          Todo lo que necesitas para mejorar tu actividad física
-        </h2>
-
-        <p class="mt-5 text-lg leading-relaxed text-slate-600">
-          La plataforma integra evaluación, seguimiento y acompañamiento profesional en un solo lugar.
-        </p>
-
-      </div>
-
-      <!-- Cards -->
-      <div class="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-
-        <!-- Card -->
-        <div class="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-2xl">
-
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-100 text-2xl">
-            📋
-          </div>
-
-          <h3 class="mt-6 text-xl font-bold text-slate-900">
-            Evaluación Inicial
           </h3>
 
-          <p class="mt-3 leading-relaxed text-slate-600">
-            Clasificación inteligente del nivel de actividad física del estudiante.
+          <!-- Text -->
+          <p class="mt-4 leading-relaxed text-slate-400">
+
+            Identifica automáticamente tu nivel de actividad física y recibe recomendaciones personalizadas.
+
           </p>
+
+          <!-- Link -->
+          <div class="mt-8">
+
+            <a href="#" class="inline-flex items-center text-sm font-semibold text-sky-300 transition hover:text-white">
+
+              Explorar módulo
+
+              <span class="ml-2 transition group-hover:translate-x-1">
+                →
+              </span>
+
+            </a>
+
+          </div>
 
         </div>
 
-        <!-- Card -->
-        <div class="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+      </div>
 
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-2xl">
+      <!-- ================================= -->
+      <!-- CARD 2 -->
+      <!-- ================================= -->
+
+      <div
+        class="group relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-emerald-400/40 hover:bg-white/10">
+
+        <!-- Glow -->
+        <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+
+          <div class="absolute inset-0 bg-linear-to-br from-emerald-500/10 to-green-400/10"></div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+
+          <!-- Icon -->
+          <div
+            class="flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-br from-emerald-500 to-green-400 text-4xl shadow-2xl shadow-emerald-500/20">
+
             🏃
+
           </div>
 
-          <h3 class="mt-6 text-xl font-bold text-slate-900">
-            Rutinas
+          <!-- Title -->
+          <h3 class="mt-8 text-2xl font-bold text-white">
+
+            Rutinas Dinámicas
+
           </h3>
 
-          <p class="mt-3 leading-relaxed text-slate-600">
-            Protocolos personalizados según el nivel físico del usuario.
+          <!-- Text -->
+          <p class="mt-4 leading-relaxed text-slate-400">
+
+            Accede a programas adaptados a tu condición física y mejora progresivamente tu rendimiento.
+
           </p>
+
+          <!-- Link -->
+          <div class="mt-8">
+
+            <a href="#"
+              class="inline-flex items-center text-sm font-semibold text-emerald-300 transition hover:text-white">
+
+              Ver rutinas
+
+              <span class="ml-2 transition group-hover:translate-x-1">
+                →
+              </span>
+
+            </a>
+
+          </div>
 
         </div>
 
-        <!-- Card -->
-        <div class="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+      </div>
 
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-2xl">
+      <!-- ================================= -->
+      <!-- CARD 3 -->
+      <!-- ================================= -->
+
+      <div
+        class="group relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-violet-400/40 hover:bg-white/10">
+
+        <!-- Glow -->
+        <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+
+          <div class="absolute inset-0 bg-linear-to-br from-violet-500/10 to-fuchsia-400/10"></div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+
+          <!-- Icon -->
+          <div
+            class="flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-br from-violet-500 to-fuchsia-400 text-4xl shadow-2xl shadow-violet-500/20">
+
             📈
+
           </div>
 
-          <h3 class="mt-6 text-xl font-bold text-slate-900">
-            Seguimiento
+          <!-- Title -->
+          <h3 class="mt-8 text-2xl font-bold text-white">
+
+            Seguimiento Total
+
           </h3>
 
-          <p class="mt-3 leading-relaxed text-slate-600">
-            Monitorea sesiones, progreso y adherencia al ejercicio.
+          <!-- Text -->
+          <p class="mt-4 leading-relaxed text-slate-400">
+
+            Monitorea tu progreso, sesiones realizadas y metas semanales en tiempo real.
+
           </p>
+
+          <!-- Link -->
+          <div class="mt-8">
+
+            <a href="#"
+              class="inline-flex items-center text-sm font-semibold text-violet-300 transition hover:text-white">
+
+              Ver progreso
+
+              <span class="ml-2 transition group-hover:translate-x-1">
+                →
+              </span>
+
+            </a>
+
+          </div>
 
         </div>
 
-        <!-- Card -->
-        <div class="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+      </div>
 
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-2xl">
+      <!-- ================================= -->
+      <!-- CARD 4 -->
+      <!-- ================================= -->
+
+      <div
+        class="group relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-orange-400/40 hover:bg-white/10">
+
+        <!-- Glow -->
+        <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+
+          <div class="absolute inset-0 bg-linear-to-br from-orange-500/10 to-yellow-400/10"></div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+
+          <!-- Icon -->
+          <div
+            class="flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-br from-orange-500 to-yellow-400 text-4xl shadow-2xl shadow-orange-500/20">
+
             🎓
+
           </div>
 
-          <h3 class="mt-6 text-xl font-bold text-slate-900">
-            Educación
+          <!-- Title -->
+          <h3 class="mt-8 text-2xl font-bold text-white">
+
+            Educación Fitness
+
           </h3>
 
-          <p class="mt-3 leading-relaxed text-slate-600">
-            Aprende hábitos saludables y mejora tu bienestar universitario.
+          <!-- Text -->
+          <p class="mt-4 leading-relaxed text-slate-400">
+
+            Aprende hábitos saludables y recomendaciones para mejorar tu bienestar físico y mental.
+
           </p>
+
+          <!-- Link -->
+          <div class="mt-8">
+
+            <a href="#"
+              class="inline-flex items-center text-sm font-semibold text-orange-300 transition hover:text-white">
+
+              Aprender más
+
+              <span class="ml-2 transition group-hover:translate-x-1">
+                →
+              </span>
+
+            </a>
+
+          </div>
 
         </div>
 
@@ -269,45 +511,6 @@
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- ================================= -->
-  <!-- CTA FINAL -->
-  <!-- ================================= -->
-
-  <section class="relative overflow-hidden bg-sky-600 py-20">
-
-    <div class="absolute inset-0 opacity-20">
-
-      <div class="absolute left-0 top-0 h-72 w-72 rounded-full bg-white blur-3xl"></div>
-
-      <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-300 blur-3xl"></div>
-
-    </div>
-
-    <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-
-      <h2 class="text-4xl font-black tracking-tight text-white">
-        Empieza hoy tu transformación física
-      </h2>
-
-      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sky-100">
-        Regístrate y recibe un plan de actividad física adaptado a tus necesidades.
-      </p>
-
-      <div class="mt-10">
-
-        <a
-          href="#registro"
-          class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-lg font-bold text-sky-700 shadow-xl transition hover:scale-105"
-        >
-          Crear cuenta
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
+</section>
