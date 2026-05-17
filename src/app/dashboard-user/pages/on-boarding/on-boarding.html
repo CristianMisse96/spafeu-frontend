@@ -1,0 +1,65 @@
+<p-stepper [value]=step class="w-full lg:max-w-3xl mx-auto">
+  <p-step-list>
+
+    <!-- STEP 1 -->
+    <p-step [value]=1>Perfil</p-step>
+
+    <!-- STEP 2 -->
+    <p-step [value]=2>PAR-Q</p-step>
+
+    <!-- STEP 3 -->
+    <p-step [value]=3>Historial</p-step>
+
+  </p-step-list>
+
+  <p-step-panels>
+
+    <!-- STEP 1: PERFIL -->
+    <p-step-panel [value]="1">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-step-profile [parentForm]="formInfo"></app-step-profile>
+
+        <div class="flex justify-end gap-2 pt-4">
+          <p-button label="Siguiente"
+                    (click)="activateCallback(2)"></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- STEP 2: PAR-Q -->
+    <p-step-panel [value]="2">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-step-par-q 
+           [formGroup]="formParq"
+           [questions]="parqQuestions" />
+
+
+        <div class="flex justify-between gap-2 pt-4">
+          <p-button label="Atras"
+                    severity="secondary"
+                    (click)="activateCallback(1)"></p-button>
+          <p-button label="Siguiente"
+                    (click)="activateCallback(3)"></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- STEP 3: HISTORIAL -->
+    <p-step-panel [value]="3">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-step-physical-history 
+           [formGroup]="formHistory"
+           [questions]="historyQuestions" />
+
+        <div class="flex justify-between gap-2 pt-4">
+          <p-button label="Atras"
+                    severity="secondary"
+                    (click)="activateCallback(2)"></p-button>
+          <p-button label="Finalizar"
+                    (click)="finish()"></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+  </p-step-panels>
+</p-stepper>
