@@ -1,0 +1,9 @@
+/* Estilos mínimos para el layout del dashboard */
+.min-h-screen {
+  position: relative;
+}
+
+/* Asegurar que el contenido no se superponga con el header fijo */
+.dashboard-content {
+  padding-top: 4rem; /* Altura del header */
+}
