@@ -1,1 +1,14 @@
-<p>step-physical-history works!</p>
+<div class="space-y-4">
+  @for (q of questions(); track q.id) {
+      <div>
+        <p class="font-semibold">{{ q.text }}</p>
+        <p-select
+          [options]="q.options"
+          formControlName="{{ q.id }}"
+          optionLabel="label"
+          optionValue="id">
+        </p-select>
+      </div>
+
+  }
+</div>

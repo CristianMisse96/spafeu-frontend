@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Question } from '../../interfaces/question.interface';
+import { SelectModule } from "primeng/select";
 
 @Component({
   selector: 'app-step-physical-history',
-  imports: [],
+  imports: [ReactiveFormsModule, SelectModule],
   templateUrl: './step-physical-history.html',
   styleUrl: './step-physical-history.css',
 })

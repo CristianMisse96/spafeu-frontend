@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Question } from '../../interfaces/question.interface';
+import { RadioButtonModule } from "primeng/radiobutton";
 
 @Component({
   selector: 'app-step-par-q',
-  imports: [],
+  imports: [ReactiveFormsModule, RadioButtonModule],
   templateUrl: './step-par-q.html',
   styleUrl: './step-par-q.css',
 })
