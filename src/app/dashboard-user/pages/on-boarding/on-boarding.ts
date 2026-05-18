@@ -21,9 +21,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './on-boarding.css',
 })
 export class OnBoarding implements OnInit {
-finish() {
-throw new Error('Method not implemented.');
-}
+
 
   step = 1;
   fb = inject(FormBuilder);
@@ -84,5 +82,11 @@ throw new Error('Method not implemented.');
         this.fb.control(null, Validators.required)
       );
     });
+  }
+
+  finish() {
+    console.log({'fromInof': this.formInfo.value});
+    console.log({'fromparQ': this.formParq.value});
+    console.log({'fromHitory': this.formHistory.value});
   }
 }

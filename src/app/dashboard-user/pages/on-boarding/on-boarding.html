@@ -1,6 +1,6 @@
 <div class="card flex justify-center">
 @if (parqQuestions().length > 0 && historyQuestions().length > 0 && campuses().length > 0) {
-  <p-stepper [value]=step class="w-full max-w-4xl mx-auto">
+  <p-stepper [value]=step class="w-full max-w-4xl mx-auto" [linear]="true">
     <p-step-list>
 
       <!-- STEP 1 -->
