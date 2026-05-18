@@ -8,6 +8,8 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { SexEnum } from '@shared/enums/sex.enum';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { Campus } from '../../interfaces/campus.interface';
+import { AcademicProgram } from '../../interfaces/academic-program.interface';
 
 @Component({
   selector: 'app-step-profile',
@@ -27,12 +29,9 @@ export class StepProfile {
    today: Date = new Date();
 
    parentForm = input.required<FormGroup<any>>();
+   campusList = input.required<Campus[]>();
    formUtils = FormUtils;
 
-   campusList = [
-    { id: 1, name: 'North Campus' },
-    { id: 2, name: 'South Campus' }
-  ];
 
   allPrograms = [
     { id: 1, campusId: 1, name: 'Engineering' },
@@ -46,18 +45,16 @@ export class StepProfile {
   { label: 'Mujer', value: SexEnum.FEMALE }
 ];
 
-  programList: any[] = [];
+  programList:  AcademicProgram[] = [];
 
   ngOnInit() {
-    this.parentForm().get('campus')?.valueChanges.subscribe(campusId => {
-
-      // reset program
+      this.parentForm().get('campus')?.valueChanges.subscribe((campusId: number) => {
+   
       this.parentForm().get('program')?.reset();
+    
+      const selectedCampus = this.campusList().find(c => c.id === campusId);
 
-      // filtrar programas
-      this.programList = this.allPrograms.filter(
-        p => p.campusId === campusId
-      );
+      this.programList = selectedCampus?.academicPrograms || [];
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { Questionnaire } from './interfaces/questionnaire.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Question } from './interfaces/question.interface';
@@ -9,6 +9,10 @@ import { ButtonModule } from "primeng/button";
 import { StepParQ } from "./steps/step-par-q/step-par-q";
 import { StepPhysicalHistory } from "./steps/step-physical-history/step-physical-history";
 import { CuestionarioEnum } from '@shared/enums/cuestionario.enum';
+import { forkJoin } from 'rxjs';
+import { CampusService } from '@dashboard-user/services/campus.service';
+import { Campus } from './interfaces/campus.interface';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-on-boarding',
@@ -24,17 +28,21 @@ throw new Error('Method not implemented.');
   step = 1;
   fb = inject(FormBuilder);
   questionnaireService = inject(QuestionnaireService);
+  campusService = inject(CampusService);
 
   formInfo: FormGroup = new FormGroup({});
   formParq: FormGroup = new FormGroup({});
   formHistory: FormGroup = new FormGroup({});
 
-  parqQuestions: Question[] = [];
-  historyQuestions: Question[] = [];
+  questionnairesSig = toSignal(this.questionnaireService.getAllQuetionnaire(),{ initialValue: [] });
+  campusesSig = toSignal(this.campusService.getAllCampusesWithPrograms(),{ initialValue: [] });
+
+  parqQuestions = computed(() => this.questionnairesSig().find(q => q.name === CuestionarioEnum.PAR_Q)?.questions ?? []);
+  historyQuestions = computed(() => this.questionnairesSig().find(q => q.name === CuestionarioEnum.HISTORIAL)?.questions ?? []);
+  campuses= computed(() => this.campusesSig() ?? []);
 
   ngOnInit() {
     this.buildForms();
-    this.loadQuestionnaires();
   }
 
   buildForms() {
@@ -54,18 +62,20 @@ throw new Error('Method not implemented.');
     this.formHistory = this.fb.group({});
   }
 
-   loadQuestionnaires() {
-    this.questionnaireService.getAllQuetionnaire().subscribe({
-      next : (resp)=>{
-         this.parqQuestions = resp.find(q => q.name === CuestionarioEnum.PAR_Q)?.questions || [];
-         this.historyQuestions = resp.find(q => q.name === CuestionarioEnum.HISTORIAL)?.questions || [];
+  constructor() {
+  effect(() => {
+    const parq = this.parqQuestions();
+    const history = this.historyQuestions();
 
-         this.createControls(this.parqQuestions, this.formParq);
-         this.createControls(this.historyQuestions, this.formHistory);
-      },
-      
-    })
-  }
+    if (parq.length && Object.keys(this.formParq.controls).length === 0) {
+      this.createControls(parq, this.formParq);
+    }
+
+    if (history.length && Object.keys(this.formHistory.controls).length === 0) {
+      this.createControls(history, this.formHistory);
+    }
+  });
+}
 
   createControls(questions: Question[], form: FormGroup) {
     questions.forEach(q => {

@@ -1,73 +1,75 @@
 <div class="card flex justify-center">
+@if (parqQuestions().length > 0 && historyQuestions().length > 0 && campuses().length > 0) {
+  <p-stepper [value]=step class="w-full max-w-4xl mx-auto">
+    <p-step-list>
 
-<p-stepper [value]=step class="w-full max-w-4xl mx-auto">
-  <p-step-list>
+      <!-- STEP 1 -->
+      <p-step [value]=1>Perfil</p-step>
 
-    <!-- STEP 1 -->
-    <p-step [value]=1>Perfil</p-step>
+      <!-- STEP 2 -->
+      <p-step [value]=2>PAR-Q</p-step>
 
-    <!-- STEP 2 -->
-    <p-step [value]=2>PAR-Q</p-step>
+      <!-- STEP 3 -->
+      <p-step [value]=3>Historial</p-step>
 
-    <!-- STEP 3 -->
-    <p-step [value]=3>Historial</p-step>
+    </p-step-list>
 
-  </p-step-list>
+    <p-step-panels>
 
-  <p-step-panels>
+      <!-- STEP 1: PERFIL -->
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-profile [parentForm]="formInfo"
+                            [campusList]="campuses()" />
 
-    <!-- STEP 1: PERFIL -->
-    <p-step-panel [value]="1">
-      <ng-template #content let-activateCallback="activateCallback">
-        <app-step-profile [parentForm]="formInfo"></app-step-profile>
-
-        @if(formInfo.valid){
-        <div class="flex justify-end gap-2 pt-4">
-          <p-button label="Siguiente"
-                    (click)="activateCallback(2)"></p-button>
-        </div>}
-      </ng-template>
-    </p-step-panel>
-
-    <!-- STEP 2: PAR-Q -->
-    <p-step-panel [value]="2">
-      <ng-template #content let-activateCallback="activateCallback">
-        <app-step-par-q 
-           [formGroup]="formParq"
-           [questions]="parqQuestions" />
-
-
-        <div class="flex justify-between gap-2 pt-4">
-          <p-button label="Atras"
-                    severity="secondary"
-                    (click)="activateCallback(1)"></p-button>
-          @if(formParq.valid){
+          @if(formInfo.valid){
+          <div class="flex justify-end gap-2 pt-4">
             <p-button label="Siguiente"
-                      (click)="activateCallback(3)"></p-button>
-          }
-        </div>
-      </ng-template>
-    </p-step-panel>
+                      (click)="activateCallback(2)"></p-button>
+          </div>}
+        </ng-template>
+      </p-step-panel>
 
-    <!-- STEP 3: HISTORIAL -->
-    <p-step-panel [value]="3">
-      <ng-template #content let-activateCallback="activateCallback">
-        <app-step-physical-history 
-           [formGroup]="formHistory"
-           [questions]="historyQuestions" />
+      <!-- STEP 2: PAR-Q -->
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-par-q 
+            [formGroup]="formParq"
+            [questions]="parqQuestions()" />
 
-        <div class="flex justify-between gap-2 pt-4">
-          <p-button label="Atras"
-                    severity="secondary"
-                    (click)="activateCallback(2)"></p-button>
-          @if(formHistory.valid){
-            <p-button label="Finalizar"
-                      (click)="finish()"></p-button>
-          }
-        </div>
-      </ng-template>
-    </p-step-panel>
 
-  </p-step-panels>
-</p-stepper>
+          <div class="flex justify-between gap-2 pt-4">
+            <p-button label="Atras"
+                      severity="secondary"
+                      (click)="activateCallback(1)"></p-button>
+            @if(formParq.valid){
+              <p-button label="Siguiente"
+                        (click)="activateCallback(3)"></p-button>
+            }
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <!-- STEP 3: HISTORIAL -->
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-physical-history 
+            [formGroup]="formHistory"
+            [questions]="historyQuestions()" />
+
+          <div class="flex justify-between gap-2 pt-4">
+            <p-button label="Atras"
+                      severity="secondary"
+                      (click)="activateCallback(2)"></p-button>
+            @if(formHistory.valid){
+              <p-button label="Finalizar"
+                        (click)="finish()"></p-button>
+            }
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+    </p-step-panels>
+  </p-stepper>
+}
 </div>
