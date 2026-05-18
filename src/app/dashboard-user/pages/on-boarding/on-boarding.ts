@@ -8,6 +8,7 @@ import { StepProfile } from "./steps/step-profile/step-profile";
 import { ButtonModule } from "primeng/button";
 import { StepParQ } from "./steps/step-par-q/step-par-q";
 import { StepPhysicalHistory } from "./steps/step-physical-history/step-physical-history";
+import { CuestionarioEnum } from '@shared/enums/cuestionario.enum';
 
 @Component({
   selector: 'app-on-boarding',
@@ -56,8 +57,8 @@ throw new Error('Method not implemented.');
    loadQuestionnaires() {
     this.questionnaireService.getAllQuetionnaire().subscribe({
       next : (resp)=>{
-         this.parqQuestions = resp.find(q => q.name === 'PAR-Q')?.questions || [];
-         this.historyQuestions = resp.find(q => q.name === 'Historial')?.questions || [];
+         this.parqQuestions = resp.find(q => q.name === CuestionarioEnum.PAR_Q)?.questions || [];
+         this.historyQuestions = resp.find(q => q.name === CuestionarioEnum.HISTORIAL)?.questions || [];
 
          this.createControls(this.parqQuestions, this.formParq);
          this.createControls(this.historyQuestions, this.formHistory);

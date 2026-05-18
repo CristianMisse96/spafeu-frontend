@@ -1,146 +1,153 @@
-<form [formGroup]="parentForm()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<form
+  [formGroup]="parentForm()"
+  class="max-w-4xl mx-auto px-6 py-6 space-y-8">
 
-  <!-- Full Name -->
-  <div class="col-12 md:col-6">
-    <label>Full Name</label>
-    <input pInputText formControlName="fullName" [invalid]="formUtils.isValidField(parentForm(),'fullName')"/>
+  <!-- Full Name (grande arriba) -->
+  <div>
+    <label class="block mb-2 font-medium">Full Name</label>
+    <input pInputText
+           formControlName="fullName"
+           class="w-full" 
+           [invalid]="formUtils.isValidField(parentForm(),'fullName')"/>
 
-     @if (formUtils.isValidField(parentForm(),'fullName')) {
-        <p-message severity="error" variant="simple" size="small">
-            {{formUtils.getFieldError(parentForm(),'fullName')}}
-        </p-message>
-     }
-
+    @if (formUtils.isValidField(parentForm(),'fullName')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'fullName')}} 
+        </p-message> 
+    }
   </div>
 
-  <!-- Campus -->
-  <div class="col-12 md:col-6">
-    <label>Campus</label>
-    
-        <p-select [options]="campusList" 
-                    formControlName="campus" 
-                    optionLabel="name" 
-                    optionValue="id"
-                    placeholder="Select campus" 
-                    [invalid]="formUtils.isValidField(parentForm(),'campus')"/>
-        
-    
-        @if (formUtils.isValidField(parentForm(),'campus')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'campus')}}
-            </p-message>
-        }
-  </div>
-    
-    <!-- Program -->
-    <div class="col-12 md:col-6">
-        <label>Program</label>
-    
-        <p-select [options]="programList" 
-                  formControlName="program" 
-                  optionLabel="name" 
-                  optionValue="id"
-                  placeholder="Select program" 
-                  [invalid]="formUtils.isValidField(parentForm(),'program')" />
-    
-        @if (formUtils.isValidField(parentForm(),'program')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'program')}}
-            </p-message>
-        }
+  <!-- Campus · Program · Semester (juntos y pequeños) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div>
+      <label class="block mb-2 font-medium">Campus</label>
+      <p-select class="w-full"
+                [options]="campusList"
+                formControlName="campus"
+                optionLabel="name"
+                optionValue="id"
+                [invalid]="formUtils.isValidField(parentForm(),'campus')" />
+
+      @if (formUtils.isValidField(parentForm(),'campus')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'campus')}} 
+        </p-message> 
+      }
     </div>
 
-    <!-- Semester -->
-    <div class="col-12 md:col-6">
-    <label>Semester</label>
-    <p-select [options]="semesterOptions"
-              formControlName="semester"
-              placeholder="Select semester"
-              [invalid]="formUtils.isValidField(parentForm(),'semester')" />
+    <div>
+      <label class="block mb-2 font-medium">Program</label>
+      <p-select class="w-full"
+                [options]="programList"
+                formControlName="program"
+                optionLabel="name"
+                optionValue="id"
+                [invalid]="formUtils.isValidField(parentForm(),'program')" />
 
-    @if (formUtils.isValidField(parentForm(),'semester')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'semester')}}
-            </p-message>
-    }
+      @if (formUtils.isValidField(parentForm(),'program')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'program')}} 
+        </p-message> 
+      }
+    </div>
+
+    <div>
+      <label class="block mb-2 font-medium">Semester</label>
+      <p-select class="w-full"
+                [options]="semesterOptions"
+                formControlName="semester"
+                [invalid]="formUtils.isValidField(parentForm(),'semester')" />
+
+      @if (formUtils.isValidField(parentForm(),'semester')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'semester')}} 
+        </p-message> 
+      }
+    </div>
   </div>
 
-   <!-- Birth Date -->
-  <div class="col-12 md:col-6">
-    <label for="icondisplay">Birth Date</label>
-    <p-datepicker formControlName="birthDate" 
-                  [iconDisplay]="'input'" 
-                  [showIcon]="true" 
-                  inputId="icondisplay"
-                  dateFormat="dd-mm-yy"
-                  [maxDate]="today"
-                  placeholder="DD-MM-AAAA"
-                  [invalid]="formUtils.isValidField(parentForm(),'birthDate')" />
+  <!-- Resto del formulario en 2 columnas -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-     @if (formUtils.isValidField(parentForm(),'birthDate')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'birthDate')}}
-            </p-message>
-    }
-  </div>
+    <!-- Birth Date -->
+    <div>
+      <label class="block mb-2 font-medium">Birth Date</label>
+      <p-datepicker formControlName="birthDate"
+                    class="w-full" 
+                    [iconDisplay]="'input'" 
+                    [showIcon]="true" 
+                    inputId="icondisplay" 
+                    dateFormat="dd-mm-yy" 
+                    [maxDate]="today" 
+                    placeholder="DD-MM-AAAA" 
+                    [invalid]="formUtils.isValidField(parentForm(),'birthDate')" /> 
 
-  <div class="col-12 md:col-6 flex gap-4">
-        <label>Sexo: </label>
+      @if (formUtils.isValidField(parentForm(),'birthDate')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'birthDate')}} 
+        </p-message> 
+      }
+    </div>
+
+    <!-- Sexo -->
+    <div class="flex flex-col gap-2">
+      <label class="font-medium">Sexo</label>
+      <div class="flex gap-6">
         @for (option of sexOptions; track option.value) {
-            <div class="flex align-items-center gap-2">
-                <p-radioButton
-                name="sex"
-                formControlName="sex"
-                [value]="option.value"
-                inputId="sex_{{option.value}}"
-                [invalid]="formUtils.isValidField(parentForm(),'sex')" />
-                
-
-                <label for="sex_{{option.value}}">
-                {{ option.label }}
-                </label>
-            </div>
+          <div class="flex items-center gap-2">
+            <p-radioButton
+              name="sex"
+              formControlName="sex"
+              [value]="option.value"
+              [invalid]="formUtils.isValidField(parentForm(),'sex')" />
+            <label>{{ option.label }}</label>
+          </div>
         }
+      </div>
 
-         @if (formUtils.isValidField(parentForm(),'sex')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'sex')}}
-            </p-message>
-        }
-   </div>
+      @if (formUtils.isValidField(parentForm(),'sex')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'sex')}} 
+        </p-message> 
+      }
+    </div>
 
-   <!-- Weight -->
-  <div class="col-12 md:col-6">
-    <label>Peso(Kg)</label>
-    <p-inputNumber formControlName="weight" 
-                   mode="decimal" 
-                   [minFractionDigits]=1
-                   [maxFractionDigits]=2
-                   [useGrouping]="false"
-                   [invalid]="formUtils.isValidField(parentForm(),'weight')" />
+    <!-- Weight -->
+    <div>
+      <label class="block mb-2 font-medium">Peso (Kg)</label>
+      <p-inputNumber formControlName="weight"
+                     class="w-full" 
+                     mode="decimal" 
+                     [minFractionDigits]=1 
+                     [maxFractionDigits]=2 
+                     [useGrouping]="false" 
+                     [invalid]="formUtils.isValidField(parentForm(),'weight')" /> 
+                     
+      @if (formUtils.isValidField(parentForm(),'weight')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'weight')}} 
+        </p-message> 
+      }
+    </div>
 
-     @if (formUtils.isValidField(parentForm(),'weight')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'weight')}}
-            </p-message>
-    }
-  </div>
+    <!-- Height -->
+    <div>
+      <label class="block mb-2 font-medium">Talla (M)</label>
+      <p-inputNumber class="w-full"
+                     mode="decimal"
+                     formControlName="height"
+                     [minFractionDigits]=1
+                     [maxFractionDigits]=2
+                     [useGrouping]="false"
+                     [invalid]="formUtils.isValidField(parentForm(),'height')" />
 
-  <!-- Height -->
-  <div class="col-12 md:col-6">
-    <label>Talla(M)</label>
-    <p-inputNumber formControlName="height" 
-                   mode="decimal" 
-                   [minFractionDigits]=1
-                   [maxFractionDigits]=2
-                   [useGrouping]="false"
-                   [invalid]="formUtils.isValidField(parentForm(),'height')" />
+      @if (formUtils.isValidField(parentForm(),'height')) { 
+        <p-message severity="error" variant="simple" size="small"> 
+            {{formUtils.getFieldError(parentForm(),'height')}} 
+        </p-message> 
+      }
+    </div>
 
-     @if (formUtils.isValidField(parentForm(),'height')) {
-            <p-message severity="error" variant="simple" size="small">
-                {{formUtils.getFieldError(parentForm(),'height')}}
-            </p-message>
-    }
   </div>
 
 </form>
