@@ -112,7 +112,7 @@
             </div>
 
             <!-- FORM -->
-            <form class="mt-10 space-y-6">
+            <form class="mt-10 space-y-6"  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
               <!-- Email -->
               <div>
@@ -121,8 +121,18 @@
                   Correo institucional
                 </label>
 
-                <input type="email" placeholder="ejemplo@universidad.edu"
-                  class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" />
+                <input type="email" 
+                       placeholder="ejemplo@universidad.edu"
+                       class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" 
+                       formControlName="email" 
+                       [class.border-red-500]="formUtils.isValidField(loginForm,'email')" />
+
+                       @if (formUtils.isValidField(loginForm,'email')) {
+                            <small class="text-red-500 text-xs">
+                                {{formUtils.getFieldError(loginForm,'email')}}
+                            </small>
+        
+                      }
 
               </div>
 
@@ -137,8 +147,18 @@
 
                 </div>
 
-                <input type="password" placeholder="••••••••"
-                  class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" />
+                <input type="password" 
+                       placeholder="••••••••"
+                       formControlName="password"
+                       class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20" 
+                       [class.border-red-500]="formUtils.isValidField(loginForm,'password')"/>
+
+                @if (formUtils.isValidField(loginForm,'password')) {
+                      <span class="text-red-500 text-xs">
+                          {{formUtils.getFieldError(loginForm,'password')}}
+                      </span>
+        
+                }
 
               </div>
 
@@ -148,13 +168,14 @@
                 <label class="flex items-center gap-3 text-sm text-slate-300">
 
                   <input type="checkbox"
-                    class="h-4 w-4 rounded border-white/20 bg-white/10 text-sky-500 focus:ring-sky-500" />
+                         formControlName="remember"
+                         class="h-4 w-4 rounded border-white/20 bg-white/10 text-sky-500 focus:ring-sky-500" />
 
                   Recordarme
 
                 </label>
 
-                <a href="#" class="text-sm text-sky-300 hover:text-white">
+                <a routerLink="/auth/forgot-password" class="text-sm text-sky-300 hover:text-white">
                   Recuperar
                 </a>
 
@@ -198,7 +219,7 @@
 
                 ¿No tienes cuenta?
 
-                <a href="#" class="font-bold text-sky-300 hover:text-white">
+                <a routerLink="/auth/register"  class="font-bold text-sky-300 hover:text-white">
                   Crear cuenta
                 </a>
 

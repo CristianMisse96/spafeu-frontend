@@ -1,343 +1,137 @@
-<!-- ================================= -->
-<!-- REGISTER PAGE -->
-<!-- ================================= -->
-
-<main class="relative min-h-screen overflow-hidden bg-slate-100">
-
-  <!-- ================================= -->
-  <!-- BACKGROUND EFFECTS -->
-  <!-- ================================= -->
-
-  <div class="absolute inset-0 overflow-hidden">
-
-    <div class="absolute top-[-100px] left-[-100px] h-72 w-72 rounded-full bg-sky-300/30 blur-3xl"></div>
-
-    <div class="absolute bottom-[-120px] right-[-100px] h-96 w-96 rounded-full bg-cyan-300/30 blur-3xl"></div>
-
-  </div>
-
-  <!-- ================================= -->
-  <!-- CONTENT -->
-  <!-- ================================= -->
-
-  <div class="relative z-10 px-4 py-10 sm:px-6 lg:px-8">
-
-    <div class="mx-auto max-w-6xl">
-
-      <!-- HEADER -->
-      <div class="mb-10 text-center">
-
-        <img
-          src="/logo.png"
-          alt="SPAFEU"
-          class="mx-auto h-16 w-auto object-contain sm:h-20"
-        />
-
-        <h1 class="mt-6 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
-          Crear cuenta
-        </h1>
-
-        <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-          Regístrate para acceder a tu plataforma universitaria de actividad física personalizada.
+<div class="min-h-screen flex items-center justify-center bg-surface-100 px-4">
+  <div class="w-full max-w-md">
+    <p-card class="shadow-2 border-round-2xl">
+      
+      <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold mb-2">Crear Cuenta</h1>
+        <p class="text-color-secondary">
+          Completa los datos para registrarte
         </p>
-
       </div>
 
-      <!-- CARD -->
-      <div class="overflow-hidden rounded-3xl border border-white/50 bg-white/80 shadow-2xl backdrop-blur-xl">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col gap-4"
+      >
 
-        <!-- TOP -->
-        <div class="border-b border-slate-200 bg-gradient-to-r from-sky-600 to-cyan-500 px-6 py-8 sm:px-10">
+        <!-- Email -->
+        <div class="flex flex-col gap-2">
+          <label for="email" class="font-medium">Email</label>
 
-          <h2 class="text-2xl font-black text-white">
-            Información del estudiante
-          </h2>
+          <input
+            pInputText
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="correo@ejemplo.com"
+            class="w-full"
+            [invalid]="formUtils.isValidField(registerForm, 'email')"
+          />
 
-          <p class="mt-2 text-sky-100">
-            Completa los datos requeridos para crear tu perfil.
-          </p>
-
+          @if (registerForm.get('email')?.hasError('existeEmail') ) {
+            <p-message severity="error" variant="simple" size="small"> 
+                El correo electrónico ya se encuentra en uso.
+            </p-message> 
+          }@else if(registerForm.controls['email'].errors?.['pattern']){
+            <p-message severity="error" variant="simple" size="small"> 
+                El campo no es un formato de correo valido.
+            </p-message> 
+          }@else if (formUtils.isValidField(registerForm,'email')) {
+             <p-message severity="error" variant="simple" size="small"> 
+                {{formUtils.getFieldError(registerForm,'email')}} 
+            </p-message> 
+          }
         </div>
 
-        <!-- FORM -->
-        <form class="space-y-12 px-6 py-10 sm:px-10 lg:px-14">
-
-          <!-- ================================= -->
-          <!-- DATOS PERSONALES -->
-          <!-- ================================= -->
-
-          <section>
-
-            <div class="mb-8">
-
-              <h3 class="text-2xl font-bold text-slate-900">
-                Datos personales
-              </h3>
-
-              <p class="mt-2 text-slate-500">
-                Información básica del estudiante.
-              </p>
-
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2">
-
-              <!-- Nombre -->
-              <div class="md:col-span-2">
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Nombre completo
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Ingresa tu nombre completo"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Email -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Correo electrónico
-                </label>
-
-                <input
-                  type="email"
-                  placeholder="ejemplo@universidad.edu"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Password -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Contraseña
-                </label>
-
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Fecha nacimiento -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Fecha de nacimiento
-                </label>
-
-                <input
-                  type="date"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Sexo -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Sexo
-                </label>
-
-                <select
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                >
-                  <option>Seleccionar</option>
-                  <option>Hombre</option>
-                  <option>Mujer</option>
-                </select>
-
-              </div>
-
-            </div>
-
-          </section>
-
-          <!-- ================================= -->
-          <!-- DATOS ACADÉMICOS -->
-          <!-- ================================= -->
-
-          <section>
-
-            <div class="mb-8">
-
-              <h3 class="text-2xl font-bold text-slate-900">
-                Datos académicos
-              </h3>
-
-              <p class="mt-2 text-slate-500">
-                Información institucional del estudiante.
-              </p>
-
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2">
-
-              <!-- Campus -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Campus
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Campus universitario"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Programa -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Programa académico
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Ej: Ingeniería de Sistemas"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Semestre -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Semestre
-                </label>
-
-                <select
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                >
-                  <option>Seleccionar semestre</option>
-
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-
-                </select>
-
-              </div>
-
-            </div>
-
-          </section>
-
-          <!-- ================================= -->
-          <!-- DATOS ANTROPOMÉTRICOS -->
-          <!-- ================================= -->
-
-          <section>
-
-            <div class="mb-8">
-
-              <h3 class="text-2xl font-bold text-slate-900">
-                Datos antropométricos
-              </h3>
-
-              <p class="mt-2 text-slate-500">
-                Información física necesaria para evaluación inicial.
-              </p>
-
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-3">
-
-              <!-- Peso -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Peso (kg)
-                </label>
-
-                <input
-                  type="number"
-                  placeholder="Ej: 70"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- Estatura -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  Estatura (cm)
-                </label>
-
-                <input
-                  type="number"
-                  placeholder="Ej: 175"
-                  class="w-full rounded-2xl border border-slate-300 px-5 py-4 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                />
-
-              </div>
-
-              <!-- IMC -->
-              <div>
-
-                <label class="mb-2 block text-sm font-semibold text-slate-700">
-                  IMC
-                </label>
-
-                <input
-                  type="text"
-                  disabled
-                  placeholder="Calculado automáticamente"
-                  class="w-full rounded-2xl border border-slate-200 bg-slate-100 px-5 py-4 text-slate-500"
-                />
-
-              </div>
-
-            </div>
-
-          </section>
-
-          <!-- BUTTONS -->
-          <div class="flex flex-col gap-4 border-t border-slate-200 pt-10 sm:flex-row sm:justify-end">
-
-            <a
-              href="#login"
-              class="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-6 py-4 text-base font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              Ya tengo cuenta
-            </a>
-
-            <button
-              type="submit"
-              class="inline-flex items-center justify-center rounded-2xl bg-sky-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700"
-            >
-              Crear cuenta
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
-    </div>
-
+        <!-- Username -->
+        <div class="flex flex-col gap-2">
+          <label for="username" class="font-medium">Usuario</label>
+
+          <input
+            pInputText
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Tu usuario"
+            class="w-full"
+            [invalid]="formUtils.isValidField(registerForm, 'username')"
+          />
+
+          @if (registerForm.get('username')?.hasError('existeUsername') ) {
+            <p-message severity="error" variant="simple" size="small"> 
+                El nombre de usuario ya se encuentra en uso.
+            </p-message> 
+          }@else if (formUtils.isValidField(registerForm,'username')) {
+            <p-message severity="error" variant="simple" size="small"> 
+              {{ formUtils.getFieldError(registerForm, "username") }}
+            </p-message> 
+            
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-2">
+          <label for="password" class="font-medium">Contraseña</label>
+
+          <p-password
+            formControlName="password"
+            inputId="password"
+            [toggleMask]="true"
+            [feedback]="false"
+            class="w-full"
+            inputStyleClass="w-full"
+            placeholder="********"
+            [invalid]="formUtils.isValidField(registerForm, 'password')"
+          >
+          </p-password>
+
+          @if (formUtils.isValidField(registerForm,'password')) {
+            <p-message severity="error" variant="simple" size="small"> 
+              {{ formUtils.getFieldError(registerForm, "password") }}
+            </p-message> 
+          }
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="flex flex-col gap-2">
+          <label for="password2" class="font-medium">
+            Confirmar Contraseña
+          </label>
+
+          <p-password
+            formControlName="password2"
+            inputId="password2"
+            [toggleMask]="true"
+            [feedback]="false"
+            class="w-full"
+            inputStyleClass="w-full"
+            placeholder="********"
+          >
+          </p-password>
+
+          @if(registerForm.errors?.['passwordsNotEquals']){
+            <p-message severity="error" variant="simple" size="small"> 
+              Las contraseñas deben de ser iguales
+            </p-message>
+          }@else if (formUtils.isValidField(registerForm,'password2')) {
+            <p-message severity="error" variant="simple" size="small"> 
+              {{ formUtils.getFieldError(registerForm, "password2") }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Button -->
+        <p-button
+          label="Registrarse"
+          icon="pi pi-user-plus"
+          type="submit"
+          styleClass="w-full"
+          [disabled]="registerForm.invalid"
+        >
+        </p-button>
+
+      </form>
+    </p-card>
   </div>
-
-</main>
+</div>
