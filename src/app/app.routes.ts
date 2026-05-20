@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard-user',
-    //canMatch: [authGuard],
+    canMatch: [authGuard],
     loadChildren: () => import('@dashboard-user/dashboard-user.routes')
   },
 

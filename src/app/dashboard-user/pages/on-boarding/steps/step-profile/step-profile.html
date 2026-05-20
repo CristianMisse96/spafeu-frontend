@@ -10,7 +10,12 @@
            class="w-full" 
            [invalid]="formUtils.isValidField(parentForm(),'fullName')"/>
 
-    @if (formUtils.isValidField(parentForm(),'fullName')) { 
+    @if(parentForm().controls['fullName'].errors?.['pattern']){
+        <p-message severity="error" variant="simple" size="small"> 
+            Solo letras, sin espacios extra.
+        </p-message>
+		}
+    @else if (formUtils.isValidField(parentForm(),'fullName')) { 
         <p-message severity="error" variant="simple" size="small"> 
             {{formUtils.getFieldError(parentForm(),'fullName')}} 
         </p-message> 

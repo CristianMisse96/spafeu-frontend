@@ -53,7 +53,7 @@ export class LoginPage {
             'Login!!!', { timeOut: 3000 });
             
         },
-        error: (err) => {console.log(err);
+        error: (err) => {console.log(err)
           if (err.error.error === 'Bad credentials' || err.error.error==='User is disabled') {
             this.toast.error(err.error.message, 'Error', { timeOut: 3000 });
           }else if(err.status ===0){

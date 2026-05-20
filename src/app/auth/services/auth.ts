@@ -46,7 +46,7 @@ export class Auth {
             const payload= JSON.parse(atob(resp.token.split(".")[1]));
             localStorage.setItem(TOKEN_KEY, resp.token);
             const {nombreCompleto,estadoKyc,id,foto} = resp.usuario;
-            const roles = JSON.parse(payload.authorities || "[]").map((r: any) => r.authority);
+            const roles = (payload.authorities ?? []).map((r: any) => r.authority);
             const user: User= {
               id,
               nombreCompleto,

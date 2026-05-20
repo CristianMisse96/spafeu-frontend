@@ -13,6 +13,7 @@ import { forkJoin } from 'rxjs';
 import { CampusService } from '@dashboard-user/services/campus.service';
 import { Campus } from './interfaces/campus.interface';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormUtils } from '@utils/forms-utils';
 
 @Component({
   selector: 'app-on-boarding',
@@ -45,7 +46,7 @@ export class OnBoarding implements OnInit {
 
   buildForms() {
     this.formInfo = this.fb.group({
-      fullName: [null, Validators.required],
+      fullName: [null, [Validators.required, Validators.pattern(FormUtils.namePattern)]],
       campus: [null, Validators.required],
       program: [null, Validators.required],
       semester: [null, [Validators.required,Validators.min(1), Validators.max(10)]],
