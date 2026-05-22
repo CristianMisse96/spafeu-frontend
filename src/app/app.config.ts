@@ -3,11 +3,13 @@ import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { definePreset } from '@primeuix/themes';
 import Material from '@primeuix/themes/material';
 import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
 import { provideToastr } from 'ngx-toastr';
+import { TokenInterceptor } from '@shared/interceptors/token.interceptor';
+import { AuthErrorInterceptor } from '@shared/interceptors/auth-error.interceptor';
 
 const MyPreset = definePreset(Material, {
   semantic: {
@@ -31,7 +33,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(),
+                      withInterceptors([TokenInterceptor, AuthErrorInterceptor])),
     providePrimeNG({
       ripple: true,
       inputStyle: 'filled',
