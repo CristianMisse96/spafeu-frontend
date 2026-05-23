@@ -20,6 +20,8 @@ export const dashboardUserRoutes: Routes = [
             },
             {
                 path: 'home',
+                data: { roles: ['ROLE_USER'] },
+                canActivate: [roleGuard],
                 component: DashboardUserHome
             },
             {
