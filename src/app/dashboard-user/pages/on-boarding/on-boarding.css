@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+/* PRIME RESET */
+::ng-deep .custom-stepper .p-stepper {
+  background: transparent;
+  border: none;
+}
+
+/* REMOVE DEFAULT PRIME STYLES */
+::ng-deep .custom-stepper .p-step-header {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+
+/* BUTTONS */
+::ng-deep .p-button {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+::ng-deep .p-button:hover {
+  transform: translateY(-1px);
+}
+
+::ng-deep .p-button:active {
+  transform: scale(0.98);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  ::ng-deep .custom-stepper .p-step-list {
+    justify-content: flex-start;
+  }
+
+}

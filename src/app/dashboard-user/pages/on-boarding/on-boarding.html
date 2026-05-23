@@ -1,75 +1,253 @@
-<div class="card flex justify-center">
-@if (parqQuestions().length > 0 && historyQuestions().length > 0 && campuses().length > 0) {
-  <p-stepper [value]=step class="w-full max-w-4xl mx-auto" [linear]="true">
-    <p-step-list>
+<div class="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-8 md:px-6">
 
-      <!-- STEP 1 -->
-      <p-step [value]=1>Perfil</p-step>
+  @if (
+    parqQuestions().length > 0 &&
+    historyQuestions().length > 0 &&
+    campuses().length > 0
+  ) {
 
-      <!-- STEP 2 -->
-      <p-step [value]=2>PAR-Q</p-step>
+  <div
+    class="w-full max-w-5xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
+  >
 
-      <!-- STEP 3 -->
-      <p-step [value]=3>Historial</p-step>
+    <!-- HEADER -->
+    <div
+      class="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white px-6 py-8 md:px-10"
+    >
 
-    </p-step-list>
+      <div class="flex flex-col gap-3">
 
-    <p-step-panels>
+        <!-- BADGE -->
+        <div
+          class="inline-flex w-fit items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium tracking-wide text-slate-500 shadow-sm"
+        >
+          Evaluación inicial
+        </div>
 
-      <!-- STEP 1: PERFIL -->
-      <p-step-panel [value]="1">
-        <ng-template #content let-activateCallback="activateCallback">
-          <app-step-profile [parentForm]="formInfo"
-                            [campusList]="campuses()" />
+        <!-- TITLE -->
+        <div class="space-y-2">
 
-          @if(formInfo.valid){
-          <div class="flex justify-end gap-2 pt-4">
-            <p-button label="Siguiente"
-                      (click)="activateCallback(2)"></p-button>
-          </div>}
-        </ng-template>
-      </p-step-panel>
+          <h1
+            class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl"
+          >
+            Completa tu perfil de bienestar físico
+          </h1>
 
-      <!-- STEP 2: PAR-Q -->
-      <p-step-panel [value]="2">
-        <ng-template #content let-activateCallback="activateCallback">
-          <app-step-par-q 
-            [formGroup]="formParq"
-            [questions]="parqQuestions()" />
+          <p
+            class="max-w-2xl text-sm leading-relaxed text-slate-500 md:text-base"
+          >
+            Esta evaluación nos permitirá personalizar tu experiencia y
+            recomendarte un programa de actividad física adaptado a tu condición
+            actual.
+          </p>
 
+        </div>
 
-          <div class="flex justify-between gap-2 pt-4">
-            <p-button label="Atras"
-                      severity="secondary"
-                      (click)="activateCallback(1)"></p-button>
-            @if(formParq.valid){
-              <p-button label="Siguiente"
-                        (click)="activateCallback(3)"></p-button>
-            }
-          </div>
-        </ng-template>
-      </p-step-panel>
+      </div>
 
-      <!-- STEP 3: HISTORIAL -->
-      <p-step-panel [value]="3">
-        <ng-template #content let-activateCallback="activateCallback">
-          <app-step-physical-history 
-            [formGroup]="formHistory"
-            [questions]="historyQuestions()" />
+    </div>
 
-          <div class="flex justify-between gap-2 pt-4">
-            <p-button label="Atras"
-                      severity="secondary"
-                      (click)="activateCallback(2)"></p-button>
-            @if(formHistory.valid){
-              <p-button label="Finalizar"
-                        (click)="finish()"></p-button>
-            }
-          </div>
-        </ng-template>
-      </p-step-panel>
+    <!-- CONTENT -->
+    <div class="p-4 md:p-8">
 
-    </p-step-panels>
-  </p-stepper>
-}
+      <p-stepper
+        [value]="step"
+        [linear]="true"
+        class="custom-stepper"
+      >
+
+        <!-- STEPS -->
+        <p-step-list
+          class="mb-10 flex items-center justify-center gap-6 overflow-x-auto pb-2"
+        >
+
+          <!-- STEP 1 -->
+          <p-step [value]="1">
+
+            <div
+              class="flex items-center gap-3 transition-all duration-200"
+            >
+
+              <span
+                class="whitespace-nowrap text-sm font-medium text-slate-600"
+              >
+                Perfil
+              </span>
+
+            </div>
+
+          </p-step>
+
+          <!-- STEP 2 -->
+          <p-step [value]="2">
+
+            <div
+              class="flex items-center gap-3 transition-all duration-200"
+            >
+
+              <span
+                class="whitespace-nowrap text-sm font-medium text-slate-600"
+              >
+                PAR-Q
+              </span>
+
+            </div>
+
+          </p-step>
+
+          <!-- STEP 3 -->
+          <p-step [value]="3">
+
+            <div
+              class="flex items-center gap-3 transition-all duration-200"
+            >
+
+              <span
+                class="whitespace-nowrap text-sm font-medium text-slate-600"
+              >
+                Historial
+              </span>
+
+            </div>
+
+          </p-step>
+
+        </p-step-list>
+
+        <!-- PANELS -->
+        <p-step-panels>
+
+          <!-- STEP 1 -->
+          <p-step-panel [value]="1">
+
+            <ng-template #content let-activateCallback="activateCallback">
+
+              <div
+                class="rounded-3xl border border-slate-200 bg-slate-50/70 p-4 backdrop-blur-sm md:p-6"
+              >
+
+                <app-step-profile
+                  [parentForm]="formInfo"
+                  [campusList]="campuses()"
+                />
+
+              </div>
+
+              @if(formInfo.valid){
+
+              <div class="flex justify-end pt-8">
+
+                <p-button
+                  label="Continuar"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  styleClass="!rounded-2xl !border-0 !bg-slate-900 hover:!bg-slate-800 !px-6 !py-3 !text-sm !font-medium !transition-all !duration-200"
+                  (click)="activateCallback(2)"
+                />
+
+              </div>
+
+              }
+
+            </ng-template>
+
+          </p-step-panel>
+
+          <!-- STEP 2 -->
+          <p-step-panel [value]="2">
+
+            <ng-template #content let-activateCallback="activateCallback">
+
+              <div
+                class="rounded-3xl border border-slate-200 bg-slate-50/70 p-4 backdrop-blur-sm md:p-6"
+              >
+
+                <app-step-par-q
+                  [formGroup]="formParq"
+                  [questions]="parqQuestions()"
+                />
+
+              </div>
+
+              <div class="flex justify-between gap-4 pt-8">
+
+                <p-button
+                  label="Atrás"
+                  icon="pi pi-arrow-left"
+                  severity="secondary"
+                  styleClass="!rounded-2xl !border !border-slate-200 !bg-white !px-6 !py-3 !text-sm !font-medium !text-slate-700 !transition-all !duration-200"
+                  (click)="activateCallback(1)"
+                />
+
+                @if(formParq.valid){
+
+                <p-button
+                  label="Continuar"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  styleClass="!rounded-2xl !border-0 !bg-slate-900 hover:!bg-slate-800 !px-6 !py-3 !text-sm !font-medium !transition-all !duration-200"
+                  (click)="activateCallback(3)"
+                />
+
+                }
+
+              </div>
+
+            </ng-template>
+
+          </p-step-panel>
+
+          <!-- STEP 3 -->
+          <p-step-panel [value]="3">
+
+            <ng-template #content let-activateCallback="activateCallback">
+
+              <div
+                class="rounded-3xl border border-slate-200 bg-slate-50/70 p-4 backdrop-blur-sm md:p-6"
+              >
+
+                <app-step-physical-history
+                  [formGroup]="formHistory"
+                  [questions]="historyQuestions()"
+                />
+
+              </div>
+
+              <div class="flex justify-between gap-4 pt-8">
+
+                <p-button
+                  label="Atrás"
+                  icon="pi pi-arrow-left"
+                  severity="secondary"
+                  styleClass="!rounded-2xl !border !border-slate-200 !bg-white !px-6 !py-3 !text-sm !font-medium !text-slate-700 !transition-all !duration-200"
+                  (click)="activateCallback(2)"
+                />
+
+                @if(formHistory.valid){
+
+                <p-button
+                  label="Finalizar evaluación"
+                  icon="pi pi-check"
+                  styleClass="!rounded-2xl !border-0 !bg-slate-900 hover:!bg-slate-800 !px-6 !py-3 !text-sm !font-medium !transition-all !duration-200"
+                  (click)="finish()"
+                />
+
+                }
+
+              </div>
+
+            </ng-template>
+
+          </p-step-panel>
+
+        </p-step-panels>
+
+      </p-stepper>
+
+    </div>
+
+  </div>
+
+  }
+
 </div>
