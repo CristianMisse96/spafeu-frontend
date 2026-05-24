@@ -32,25 +32,17 @@ export class StepProfile {
    campusList = input.required<Campus[]>();
    formUtils = FormUtils;
 
-
-  allPrograms = [
-    { id: 1, campusId: 1, name: 'Engineering' },
-    { id: 2, campusId: 1, name: 'Medicine' },
-    { id: 3, campusId: 2, name: 'Business' },
-    { id: 4, campusId: 2, name: 'Law' }
-  ];
-
   sexOptions = [
-  { label: 'Hombre', value: SexEnum.MALE },
-  { label: 'Mujer', value: SexEnum.FEMALE }
-];
+    { label: 'Hombre', value: SexEnum.MALE },
+    { label: 'Mujer', value: SexEnum.FEMALE }
+  ];
 
   programList:  AcademicProgram[] = [];
 
   ngOnInit() {
-      this.parentForm().get('campus')?.valueChanges.subscribe((campusId: number) => {
+      this.parentForm().get('campusId')?.valueChanges.subscribe((campusId: number) => {
    
-      this.parentForm().get('program')?.reset();
+      this.parentForm().get('programId')?.reset();
     
       const selectedCampus = this.campusList().find(c => c.id === campusId);
 
@@ -58,5 +50,5 @@ export class StepProfile {
     });
   }
 
-  semesterOptions = Array.from({ length: 10 }, (_, i) => i + 1);
+  semesterOptions = Array.from({ length: 12 }, (_, i) => i + 1);
 }

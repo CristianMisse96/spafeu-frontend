@@ -28,14 +28,14 @@
       <label class="block mb-2 font-medium">Campus</label>
       <p-select class="w-full"
                 [options]="campusList()"
-                formControlName="campus"
+                formControlName="campusId"
                 optionLabel="name"
                 optionValue="id"
-                [invalid]="formUtils.isValidField(parentForm(),'campus')" />
+                [invalid]="formUtils.isValidField(parentForm(),'campusId')" />
 
-      @if (formUtils.isValidField(parentForm(),'campus')) { 
+      @if (formUtils.isValidField(parentForm(),'campusId')) { 
         <p-message severity="error" variant="simple" size="small"> 
-            {{formUtils.getFieldError(parentForm(),'campus')}} 
+            {{formUtils.getFieldError(parentForm(),'campusId')}} 
         </p-message> 
       }
     </div>
@@ -44,14 +44,14 @@
       <label class="block mb-2 font-medium">Program</label>
       <p-select class="w-full"
                 [options]="programList"
-                formControlName="program"
+                formControlName="programId"
                 optionLabel="name"
                 optionValue="id"
-                [invalid]="formUtils.isValidField(parentForm(),'program')" />
+                [invalid]="formUtils.isValidField(parentForm(),'programId')" />
 
-      @if (formUtils.isValidField(parentForm(),'program')) { 
+      @if (formUtils.isValidField(parentForm(),'programId')) { 
         <p-message severity="error" variant="simple" size="small"> 
-            {{formUtils.getFieldError(parentForm(),'program')}} 
+            {{formUtils.getFieldError(parentForm(),'programId')}} 
         </p-message> 
       }
     </div>
@@ -120,17 +120,17 @@
     <!-- Weight -->
     <div>
       <label class="block mb-2 font-medium">Peso (Kg)</label>
-      <p-inputNumber formControlName="weight"
+      <p-inputNumber formControlName="weightKg"
                      class="w-full" 
                      mode="decimal" 
                      [minFractionDigits]=1 
                      [maxFractionDigits]=2 
                      [useGrouping]="false" 
-                     [invalid]="formUtils.isValidField(parentForm(),'weight')" /> 
+                     [invalid]="formUtils.isValidField(parentForm(),'weightKg')" /> 
                      
-      @if (formUtils.isValidField(parentForm(),'weight')) { 
+      @if (formUtils.isValidField(parentForm(),'weightKg')) { 
         <p-message severity="error" variant="simple" size="small"> 
-            {{formUtils.getFieldError(parentForm(),'weight')}} 
+            {{formUtils.getFieldError(parentForm(),'weightKg')}} 
         </p-message> 
       }
     </div>
@@ -140,15 +140,15 @@
       <label class="block mb-2 font-medium">Talla (M)</label>
       <p-inputNumber class="w-full"
                      mode="decimal"
-                     formControlName="height"
+                     formControlName="heightM"
                      [minFractionDigits]=1
                      [maxFractionDigits]=2
                      [useGrouping]="false"
-                     [invalid]="formUtils.isValidField(parentForm(),'height')" />
+                     [invalid]="formUtils.isValidField(parentForm(),'heightM')" />
 
-      @if (formUtils.isValidField(parentForm(),'height')) { 
+      @if (formUtils.isValidField(parentForm(),'heightM')) { 
         <p-message severity="error" variant="simple" size="small"> 
-            {{formUtils.getFieldError(parentForm(),'height')}} 
+            {{formUtils.getFieldError(parentForm(),'heightM')}} 
         </p-message> 
       }
     </div>

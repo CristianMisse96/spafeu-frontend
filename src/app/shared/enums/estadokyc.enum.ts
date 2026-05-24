@@ -1,6 +1,4 @@
 export enum EstadoKycEnum{
     NO_INICIADO= 'NO_INICIADO',
-    PENDIENTE= 'PENDIENTE',
-    APROBADO= 'APROBADO',
-    RECHAZADO= 'RECHAZADO'
+    COMPLETO= 'COMPLETO'
 }

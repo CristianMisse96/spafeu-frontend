@@ -9,5 +9,5 @@ export interface User {
   foto?: string | null;
   enabled?: boolean | null;
   roles: Role[];
-  estadoKyc?:  EstadoKycEnum;
+  estadoKyc:  EstadoKycEnum;
 }

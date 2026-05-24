@@ -2,6 +2,6 @@ import { Mensaje } from "./mensaje.interface";
 
 export interface RespuestaServicio<T> {
   negocio?: T;
-  mensajeDTO?: Mensaje;
+  mensaje?: Mensaje;
   ok: boolean;
 }
