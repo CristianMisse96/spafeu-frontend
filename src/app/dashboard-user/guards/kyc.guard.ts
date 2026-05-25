@@ -11,7 +11,7 @@ export const kycGuard: CanActivateChildFn = (childRoute, state) => {
     const kycApproved = authService.estadoKyc();
     const url = state.url;
 
-    // Si no ha aprobado el KYC y está intentando ir a /home → redirigir a verify
+   // Si no ha aprobado el KYC y está intentando ir a /home → redirigir a verify
     if (kycApproved === EstadoKycEnum.NO_INICIADO  && url.includes('home')) {
       return router.parseUrl('/dashboard-user/on-boarding');
     }
