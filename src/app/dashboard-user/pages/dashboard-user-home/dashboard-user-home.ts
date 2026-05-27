@@ -4,6 +4,7 @@ import { ImcClassificationPipe } from "../../pipes/imc-classification.pipe";
 import { toSignal } from '@angular/core/rxjs-interop';
 import { PhysicalActivityProtocolService } from '@dashboard-user/services/physical-activity-protocol.service';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-user-home',
@@ -13,18 +14,24 @@ import { ButtonModule } from 'primeng/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardUserHome {
-  
-  user = inject(Auth).usuario();
+
+  auth = inject(Auth)
+  user = this.auth.usuario();
   physicalActivityService = inject(PhysicalActivityProtocolService);
+  router = inject(Router);
 
   protocol = toSignal(this.physicalActivityService.findAllWithoutExercises(this.user?.nivelActividadFisica!))
 
   /**
    * Cierra la sesión del usuario universitario o fisioterapeuta
    */
-   logout(): void {
-    console.log('Cerrando sesión en la plataforma deportiva...');
-    // Aquí agregas tu lógica de redirección o limpieza de tokens (AuthService, etc.)
+  logout(): void {
+    this.auth.logout();
   }
+
+  verEjercicios() {
+    this.router.navigateByUrl('/dashboard-user/excercises')
+  }
+  
 
 }

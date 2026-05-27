@@ -4,6 +4,7 @@ import { DashboardUserHome } from "./pages/dashboard-user-home/dashboard-user-ho
 import { kycGuard } from "./guards/kyc.guard";
 import { roleGuard } from "@shared/guards/role-guard";
 import { OnBoarding } from "./pages/on-boarding/on-boarding";
+import { ExcersiseList } from "./pages/excersise-list/excersise-list";
 
 
 export const dashboardUserRoutes: Routes = [
@@ -23,6 +24,11 @@ export const dashboardUserRoutes: Routes = [
                 data: { roles: ['ROLE_USER'] },
                 canActivate: [roleGuard],
                 component: DashboardUserHome
+            },
+
+            {
+                path: 'excercises',
+                component: ExcersiseList
             },
             {
                 path: '**',

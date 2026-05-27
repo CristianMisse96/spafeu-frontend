@@ -5,6 +5,7 @@ import { NivelActividadFisicaEnum } from '@shared/enums/nivel-actividadfisica.en
 import { PhysicalActivityProtocol } from '@dashboard-user/interfaces/physical-activity-protocol.interface';
 import { RespuestaServicio } from '@shared/interfaces/respuesta-servicio.interface';
 import { MessagesService } from '@shared/services/messages.service';
+import { ExerciseGroupedByActivityType } from '@dashboard-user/interfaces/exercise-by-activity-type.interface';
 
 
 const BASE_URL = 'http://localhost:8080/api';
@@ -17,15 +18,26 @@ export class PhysicalActivityProtocolService {
   private readonly http = inject(HttpClient);
   private readonly messages = inject(MessagesService);
 
-  findAllWithoutExercises(
-    nivelActividadFisica: NivelActividadFisicaEnum
-  ): Observable<PhysicalActivityProtocol> {
+  findAllWithoutExercises(nivelActividadFisica: NivelActividadFisicaEnum): Observable<PhysicalActivityProtocol> {
 
     const params = new HttpParams()
       .set('nivelActividadFisica', nivelActividadFisica);
 
     return this.http.get<RespuestaServicio<PhysicalActivityProtocol>>(
       `${BASE_URL}/physical-activity-protocols`,
+      { params }
+    ).pipe(
+        map(resp => resp?.negocio!),
+        catchError(this.messages.errorHandler)
+    );
+  }
+
+  findExercisesByNivelActividad(nivelActividadFisica: NivelActividadFisicaEnum): Observable<ExerciseGroupedByActivityType[]> {
+      const params = new HttpParams()
+      .set('nivelActividadFisica', nivelActividadFisica);
+
+    return this.http.get<RespuestaServicio<ExerciseGroupedByActivityType[]>>(
+      `${BASE_URL}/physical-activity-protocols/exercises`,
       { params }
     ).pipe(
         map(resp => resp?.negocio!),

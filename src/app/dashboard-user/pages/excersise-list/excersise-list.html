@@ -1,0 +1,79 @@
+<div class="flex flex-column gap-5">
+
+    @for(group of excercisesGroup(); track group.activityType) {
+
+        <div>
+
+            <div class="flex align-items-center gap-2 mb-4">
+
+                <i class="pi pi-heart-fill text-primary"></i>
+
+                <h2 class="m-0">
+                    {{ group.activityType }}
+                </h2>
+
+            </div>
+
+            <div class="grid">
+
+                @for(exercise of group.exercises; track exercise.id) {
+
+                    <div class="col-12 md:col-6 lg:col-4">
+
+                        <p-card
+                            class="h-full">
+
+                            <ng-template pTemplate="header">
+
+                                <img
+                                    [src]="exercise.foto"
+                                    class="w-full h-15rem object-cover">
+
+                            </ng-template>
+
+                            <h3>
+                                {{ exercise.name }}
+                            </h3>
+
+                            <p class="text-color-secondary">
+
+                                {{ exercise.descripcionEjercicio }}
+
+                            </p>
+
+                            <div class="flex gap-2 mt-3">
+
+                                <p-tag
+                                    [value]="exercise.tipoIntensidad.name">
+                                </p-tag>
+
+                                <p-tag
+                                    severity="info"
+                                    [value]="exercise.duracion.description">
+                                </p-tag>
+
+                            </div>
+
+                            <div class="mt-4">
+
+                                <button
+                                    pButton
+                                    label="Iniciar ejercicio"
+                                    icon="pi pi-play">
+                                </button>
+
+                            </div>
+
+                        </p-card>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+    }
+
+</div>
