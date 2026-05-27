@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Auth } from '@auth/services/auth';
+import { EstadoKycEnum } from '@shared/enums/estadokyc.enum';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
@@ -13,8 +14,10 @@ import { TooltipModule } from 'primeng/tooltip';
   styleUrl: './dashboard-user-layout.component.css',
 })
 export class DashboardUserLayoutComponent {
-  private authService = inject(Auth);
+  authService = inject(Auth);
   user = this.authService.usuario();
+  estadoKyc = EstadoKycEnum.COMPLETO;
+  router = inject(Router);
 
   sidebarOpen = signal(false);
 
@@ -43,5 +46,6 @@ export class DashboardUserLayoutComponent {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigateByUrl('/');
   }
 }
