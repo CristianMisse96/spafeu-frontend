@@ -23,8 +23,15 @@ export class UserHealthProfileService {
         return this.http.post<RespuestaServicio<User>>(`${BASE_URL}/user/health-profile/register`,userHealtProfile)
                         .pipe(
                             tap(resp=> {
-                                const estadoKyc = resp.negocio?.estadoKyc ?? EstadoKycEnum.NO_INICIADO;
-                                this.authService.actualizarEstadoKycUsuario(estadoKyc);
+                                 const partialUser: Partial<User> = {
+                                    estadoKyc: resp.negocio?.estadoKyc,
+                                    bmi: resp.negocio?.bmi,
+                                    heightM: resp.negocio?.heightM,
+                                    weightKg: resp.negocio?.weightKg,
+                                    nivelActividadFisica: resp.negocio?.nivelActividadFisica,
+                                    nombreCompleto: resp.negocio?.nombreCompleto
+                                };
+                                this.authService.actualizarUsuario(partialUser);
                             }),
                             catchError(this.messages.errorHandler)
                         );

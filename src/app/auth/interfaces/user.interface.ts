@@ -1,5 +1,6 @@
 import { EstadoKycEnum } from "@shared/enums/estadokyc.enum";
 import { Role } from "./role.interface";
+import { NivelActividadFisicaEnum } from "@shared/enums/nivel-actividadfisica.enum";
 
 export interface User {
   id: number;
@@ -10,4 +11,8 @@ export interface User {
   enabled?: boolean | null;
   roles: Role[];
   estadoKyc:  EstadoKycEnum;
+  weightKg?: number;
+  heightM?: number;
+  bmi?: number;
+  nivelActividadFisica?: NivelActividadFisicaEnum;
 }

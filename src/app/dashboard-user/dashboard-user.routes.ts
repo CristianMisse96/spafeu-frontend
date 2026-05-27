@@ -10,18 +10,18 @@ export const dashboardUserRoutes: Routes = [
     {
         path:'',
         component: DashboardUserLayoutComponent,
-        //canActivateChild: [kycGuard],
+        canActivateChild: [kycGuard],
         children:[
             {
                 path: 'on-boarding',
                 data: { roles: ['ROLE_USER'] },
-                //canActivate: [roleGuard],
+                canActivate: [roleGuard],
                 component: OnBoarding
             },
             {
                 path: 'home',
                 data: { roles: ['ROLE_USER'] },
-                //canActivate: [roleGuard],
+                canActivate: [roleGuard],
                 component: DashboardUserHome
             },
             {

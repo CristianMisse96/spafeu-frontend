@@ -45,13 +45,9 @@ export class Auth {
             this._token.set(resp.token);
             const payload= JSON.parse(atob(resp.token.split(".")[1]));
             localStorage.setItem(TOKEN_KEY, resp.token);
-            const {nombreCompleto,estadoKyc,id,foto} = resp.usuario;
             const roles = (payload.authorities ?? []).map((r: any) => r.authority);
             const user: User= {
-              id,
-              nombreCompleto,
-              estadoKyc,
-              foto,
+              ...resp.usuario,
               roles
             }
             this._currentUser.set(user);
@@ -135,4 +131,19 @@ export class Auth {
       localStorage.setItem(USER_KEY, JSON.stringify(actualizado));
     }
   }
+
+  actualizarUsuario(data: Partial<User>) {
+    const usuario = this._currentUser();
+
+    if (usuario) {
+      const actualizado = {
+        ...usuario,
+        ...data
+      };
+
+      this._currentUser.set(actualizado);
+      localStorage.setItem(USER_KEY, JSON.stringify(actualizado));
+    }
+  }
+  
 }
