@@ -58,8 +58,9 @@
 
                                 <button
                                     pButton
-                                    label="Iniciar ejercicio"
-                                    icon="pi pi-play"
+                                    [label]="completedIds().has(exercise.id) ? 'Completado' : 'Iniciar ejercicio'"
+                                    [severity]="calularInfo(exercise.id)"
+                                    [icon]="completedIds().has(exercise.id) ? 'pi pi-check' : 'pi pi-play'"
                                     (click)="iniciarEjercicio(exercise.id)">
                                     
                                 </button>

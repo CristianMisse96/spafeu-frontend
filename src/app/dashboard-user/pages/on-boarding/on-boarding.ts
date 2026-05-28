@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
   templateUrl: './on-boarding.html',
   styleUrl: './on-boarding.css',
 })
-export class OnBoarding implements OnInit {
+export default class OnBoarding implements OnInit {
 
 
   step = 1;

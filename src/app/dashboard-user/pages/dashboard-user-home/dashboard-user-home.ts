@@ -5,6 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { PhysicalActivityProtocolService } from '@dashboard-user/services/physical-activity-protocol.service';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { ExserciseService } from '@dashboard-user/services/exercise.service';
 
 @Component({
   selector: 'app-dashboard-user-home',
@@ -13,14 +14,15 @@ import { Router } from '@angular/router';
   styleUrl: './dashboard-user-home.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardUserHome {
+export default class DashboardUserHome {
 
   auth = inject(Auth)
-  user = this.auth.usuario();
+  user = this.auth.usuario;
   physicalActivityService = inject(PhysicalActivityProtocolService);
   router = inject(Router);
+  exerciseService = inject(ExserciseService);
 
-  protocol = toSignal(this.physicalActivityService.findAllWithoutExercises(this.user?.nivelActividadFisica!))
+  protocol = toSignal(this.physicalActivityService.findAllWithoutExercises(this.user()?.nivelActividadFisica!))
 
   /**
    * Cierra la sesión del usuario universitario o fisioterapeuta
@@ -33,5 +35,11 @@ export class DashboardUserHome {
     this.router.navigateByUrl('/dashboard-user/excercises')
   }
   
+  completedIds = toSignal(
+      this.exerciseService.getCompletedExerciseIds(),
+      {
+          initialValue: new Set<number>()
+      }
+    );
 
 }

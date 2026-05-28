@@ -33,4 +33,24 @@ export class ExserciseService {
                             })
                         )
     }
+
+    getCompletedExerciseIds() {
+    
+        return this.http
+            .get<RespuestaServicio<number[]>>(
+                `${BASE_URL}/exercises/completed`
+            )
+            .pipe(
+                map(resp => new Set<number>(resp.negocio))
+            );
+
+    }
+
+    completeExerciseSession(exerciseId: number) {
+       return this.http.patch<RespuestaServicio<void>>(
+        `${BASE_URL}/exercises/${exerciseId}/complete`,
+        null
+    )
+    }
+    
 }

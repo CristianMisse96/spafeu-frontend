@@ -15,7 +15,7 @@ import { TooltipModule } from 'primeng/tooltip';
 })
 export class DashboardUserLayoutComponent {
   authService = inject(Auth);
-  user = this.authService.usuario();
+  user = this.authService.usuario;
   estadoKyc = EstadoKycEnum.COMPLETO;
   router = inject(Router);
 
@@ -32,7 +32,7 @@ export class DashboardUserLayoutComponent {
   });
 
   userInitial = computed(() => {
-    const name = this.user?.nombreCompleto ?? '';
+    const name = this.user()?.nombreCompleto ?? '';
     return name.charAt(0).toUpperCase() || 'U';
   });
 

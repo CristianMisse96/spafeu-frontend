@@ -1,8 +1,9 @@
 import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from '@auth/services/auth';
 import { ExserciseService } from '@dashboard-user/services/exercise.service';
+import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { switchMap } from 'rxjs';
@@ -13,13 +14,15 @@ import { switchMap } from 'rxjs';
   templateUrl: './excercise.html',
   styleUrl: './excercise.css',
 })
-export class Excercise {
+export default class Excercise {
 
   readonly seconds = signal(0);
   private route = inject(ActivatedRoute);
   private user = inject(Auth).usuario;
   private interval!: ReturnType<typeof setInterval>;
   readonly running = signal(true);
+  toast = inject(ToastrService);
+  router = inject(Router);
 
   constructor() {
 
@@ -80,7 +83,16 @@ export class Excercise {
   });
 
   finalizarSesion() {
-    clearInterval(this.interval);
+    this.exerciseService
+    .completeExerciseSession(this.exercise()?.id!)
+    .subscribe({
+        next: (resp) => {
+
+            this.toast.info(resp.mensaje?.detail, resp.mensaje?.summary, {timeOut: 3000})
+                                      this.router.navigateByUrl('/dashboard-user/excercises');
+
+        }
+    });
   }
 
   pausarSesion(): void {

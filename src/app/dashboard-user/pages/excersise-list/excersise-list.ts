@@ -4,8 +4,9 @@ import { Auth } from '@auth/services/auth';
 import { PhysicalActivityProtocolService } from '@dashboard-user/services/physical-activity-protocol.service';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
+import { ButtonModule, ButtonSeverity } from 'primeng/button';
 import { Router } from '@angular/router';
+import { ExserciseService } from '@dashboard-user/services/exercise.service';
 
 @Component({
   selector: 'app-excersise-list',
@@ -13,15 +14,29 @@ import { Router } from '@angular/router';
   templateUrl: './excersise-list.html',
   styleUrl: './excersise-list.css',
 })
-export class ExcersiseList {
+export default class ExcersiseList {
+
 
   user = inject(Auth).usuario;
-  exercises = inject(PhysicalActivityProtocolService);
+  physicalActivityProtocolService = inject(PhysicalActivityProtocolService);
+  exerciseService = inject(ExserciseService);
   router= inject(Router);
 
-  excercisesGroup = toSignal(this.exercises.findExercisesByNivelActividad(this.user()?.nivelActividadFisica!), {initialValue : []});
+  excercisesGroup = toSignal(this.physicalActivityProtocolService
+                                 .findExercisesByNivelActividad(this.user()?.nivelActividadFisica!), {initialValue : []});
+
+  completedIds = toSignal(
+    this.exerciseService.getCompletedExerciseIds(),
+    {
+        initialValue: new Set<number>()
+    }
+  );
 
   iniciarEjercicio(excersiseId: number) {
     this.router.navigate(['/dashboard-user/excercise', excersiseId]);
+  }
+
+  calularInfo(id: number): ButtonSeverity {
+    return this.completedIds().has(id) ? 'success' : 'primary';
   }
 }

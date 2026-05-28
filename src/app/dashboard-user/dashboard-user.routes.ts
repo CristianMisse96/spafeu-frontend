@@ -1,11 +1,7 @@
 import { Routes } from "@angular/router";
 import { DashboardUserLayoutComponent } from "./layout/dashboard-user-layout/dashboard-user-layout.component";
-import { DashboardUserHome } from "./pages/dashboard-user-home/dashboard-user-home";
 import { kycGuard } from "./guards/kyc.guard";
 import { roleGuard } from "@shared/guards/role-guard";
-import { OnBoarding } from "./pages/on-boarding/on-boarding";
-import { ExcersiseList } from "./pages/excersise-list/excersise-list";
-import { Excercise } from "./pages/excercise/excercise";
 
 
 export const dashboardUserRoutes: Routes = [
@@ -18,22 +14,26 @@ export const dashboardUserRoutes: Routes = [
                 path: 'on-boarding',
                 data: { roles: ['ROLE_USER'] },
                 canActivate: [roleGuard],
-                component: OnBoarding
+                loadComponent: () => import('./pages/on-boarding/on-boarding')
             },
             {
                 path: 'home',
                 data: { roles: ['ROLE_USER'] },
                 canActivate: [roleGuard],
-                component: DashboardUserHome
+                loadComponent: () => import('./pages/dashboard-user-home/dashboard-user-home')
             },
 
             {
                 path: 'excercises',
-                component: ExcersiseList
+                loadComponent: () => import('./pages/excersise-list/excersise-list')
             },
             {
                 path: 'excercise/:id',
-                component: Excercise
+                loadComponent: () => import('./pages/excercise/excercise')
+            },
+            {
+                path: 'progress',
+                loadComponent: () => import('./pages/seguimiento/seguimiento')
             },
             {
                 path: '**',
