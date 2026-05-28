@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Auth } from '@auth/services/auth';
 import { EstadoKycEnum } from '@shared/enums/estadokyc.enum';
 import { AvatarModule } from 'primeng/avatar';
@@ -9,7 +9,7 @@ import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-dashboard-user-layout',
-  imports: [RouterOutlet, AvatarModule, ButtonModule, TagModule, TooltipModule],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, AvatarModule, ButtonModule, TagModule, TooltipModule],
   templateUrl: './dashboard-user-layout.component.html',
   styleUrl: './dashboard-user-layout.component.css',
 })

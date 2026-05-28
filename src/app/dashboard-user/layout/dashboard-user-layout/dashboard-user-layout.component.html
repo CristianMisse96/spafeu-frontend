@@ -41,20 +41,25 @@
 
       <!-- NAV -->
       <nav class="flex flex-1 flex-col gap-1 p-4">
-        <button
-          class="group flex items-center gap-3 rounded-xl bg-linear-to-r from-indigo-600 to-indigo-700 px-4 py-3 shadow-lg shadow-indigo-600/20 transition-all duration-300 hover:shadow-xl"
+        <a
+          routerLink="/dashboard-user/home"
+          routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="group flex items-center gap-3 rounded-xl px-4 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white"
           aria-current="page">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm">
             <i class="pi pi-home text-white text-sm" aria-hidden="true"></i>
           </div>
           <div class="flex flex-col items-start">
-            <span class="text-sm font-semibold text-white">Dashboard</span>
+            <span class="text-sm font-semibold">Dashboard</span>
             <span class="text-[11px] text-indigo-200/80">Resumen general</span>
           </div>
           <span class="ml-auto h-2 w-2 rounded-full bg-amber-400 shadow shadow-amber-400/50"></span>
-        </button>
+        </a>
 
-        <button
+        <a
+          routerLink="/dashboard-user/excercises"
+          routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
           class="group flex items-center gap-3 rounded-xl px-4 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all group-hover:bg-white/10">
             <i class="pi pi-bolt text-sm transition-colors" aria-hidden="true"></i>
@@ -63,9 +68,11 @@
             <span class="text-sm font-medium">Rutinas</span>
             <span class="text-[11px] text-indigo-200/50">Actividad física</span>
           </div>
-        </button>
+        </a>
 
-        <button
+        <a
+          routerLink="/dashboard-user/progress"
+          routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
           class="group flex items-center gap-3 rounded-xl px-4 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all group-hover:bg-white/10">
             <i class="pi pi-chart-line text-sm transition-colors" aria-hidden="true"></i>
@@ -74,9 +81,11 @@
             <span class="text-sm font-medium">Progreso</span>
             <span class="text-[11px] text-indigo-200/50">Seguimiento</span>
           </div>
-        </button>
+        </a>
 
-        <button
+        <a
+          routerLink="/educacion"
+          routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
           class="group flex items-center gap-3 rounded-xl px-4 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all group-hover:bg-white/10">
             <i class="pi pi-book text-sm transition-colors" aria-hidden="true"></i>
@@ -85,9 +94,11 @@
             <span class="text-sm font-medium">Educación</span>
             <span class="text-[11px] text-indigo-200/50">Hábitos saludables</span>
           </div>
-        </button>
+        </a>
 
-        <button
+        <a
+          routerLink="/comunidad"
+          routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
           class="group flex items-center gap-3 rounded-xl px-4 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 transition-all group-hover:bg-white/10">
             <i class="pi pi-users text-sm transition-colors" aria-hidden="true"></i>
@@ -97,7 +108,7 @@
             <span class="text-[11px] text-indigo-200/50">Retos grupales</span>
           </div>
           <span class="ml-auto flex h-5 items-center rounded-full bg-amber-500 px-2 text-[10px] font-bold text-white">NUEVO</span>
-        </button>
+        </a>
       </nav>
     </aside>
   }

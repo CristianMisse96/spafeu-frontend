@@ -69,8 +69,8 @@ export class LoginPage {
   ngOnInit(): void {
     if(this.authService.isAuthenticated()){ 
 
-        this.toast.info(`${this.authService.usuario()?.username}, ya estas autenticado!`, 'Login',{ timeOut: 3000 });
-        this.router.navigateByUrl('/');
+        this.toast.info(`${this.authService.usuario()?.nombreCompleto}, ya estas autenticado!`, 'Login',{ timeOut: 3000 });
+        this.router.navigateByUrl('/dashboard-user/home');
     }
   }
 }

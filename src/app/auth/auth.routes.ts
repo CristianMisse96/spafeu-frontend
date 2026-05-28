@@ -4,6 +4,7 @@ import { RegisterPage } from "./pages/register-page/register-page";
 import { ForgotPasswordPage } from "./pages/forgot-password-page/forgot-password-page";
 import { ResetPasswordPage } from "./pages/reset-password-page/reset-password-page";
 import { AuthLayout } from "./layuot/auth-layout/auth-layout";
+import { publicGuard } from "@shared/guards/public-guard";
 
 export const authRoutes: Routes = [
   {
@@ -12,19 +13,23 @@ export const authRoutes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginPage
+        component: LoginPage,
+        canActivate: [publicGuard]
       },
       {
         path: 'register',
-        component: RegisterPage
+        component: RegisterPage,
+        canActivate: [publicGuard]
       },
       {
         path: 'forgot-password',
-        component: ForgotPasswordPage
+        component: ForgotPasswordPage,
+        canActivate: [publicGuard]
       },
       {
         path: 'reset-password',
-        component: ResetPasswordPage
+        component: ResetPasswordPage,
+        canActivate: [publicGuard]
       },
       {
         path: '**',
