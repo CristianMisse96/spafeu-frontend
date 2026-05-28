@@ -23,13 +23,13 @@
                         <p-card
                             class="h-full">
 
-                            <ng-template pTemplate="header">
+                            <!--<ng-template pTemplate="header">
 
                                 <img
                                     [src]="exercise.foto"
                                     class="w-full h-15rem object-cover">
 
-                            </ng-template>
+                            </ng-template>-->
 
                             <h3>
                                 {{ exercise.name }}
@@ -59,7 +59,9 @@
                                 <button
                                     pButton
                                     label="Iniciar ejercicio"
-                                    icon="pi pi-play">
+                                    icon="pi pi-play"
+                                    (click)="iniciarEjercicio(exercise.id)">
+                                    
                                 </button>
 
                             </div>

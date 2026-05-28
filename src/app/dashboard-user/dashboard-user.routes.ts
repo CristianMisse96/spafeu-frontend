@@ -5,6 +5,7 @@ import { kycGuard } from "./guards/kyc.guard";
 import { roleGuard } from "@shared/guards/role-guard";
 import { OnBoarding } from "./pages/on-boarding/on-boarding";
 import { ExcersiseList } from "./pages/excersise-list/excersise-list";
+import { Excercise } from "./pages/excercise/excercise";
 
 
 export const dashboardUserRoutes: Routes = [
@@ -29,6 +30,10 @@ export const dashboardUserRoutes: Routes = [
             {
                 path: 'excercises',
                 component: ExcersiseList
+            },
+            {
+                path: 'excercise/:id',
+                component: Excercise
             },
             {
                 path: '**',
