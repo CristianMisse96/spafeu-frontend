@@ -6,9 +6,10 @@ import { PhysicalActivityProtocol } from '@dashboard-user/interfaces/physical-ac
 import { RespuestaServicio } from '@shared/interfaces/respuesta-servicio.interface';
 import { MessagesService } from '@shared/services/messages.service';
 import { ExerciseGroupedByActivityType } from '@dashboard-user/interfaces/exercise-by-activity-type.interface';
+import { environment } from 'src/environments/environment';
 
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
