@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
 })
-export class LoginPage {
+export default class LoginPage {
 
    
   readonly MENSAJE_SIN_CONEXION =

@@ -1,10 +1,6 @@
 import { Routes } from "@angular/router";
-import { LoginPage } from "./pages/login-page/login-page";
-import { RegisterPage } from "./pages/register-page/register-page";
-import { ForgotPasswordPage } from "./pages/forgot-password-page/forgot-password-page";
-import { ResetPasswordPage } from "./pages/reset-password-page/reset-password-page";
-import { AuthLayout } from "./layuot/auth-layout/auth-layout";
 import { publicGuard } from "@shared/guards/public-guard";
+import { AuthLayout } from "./layuot/auth-layout/auth-layout";
 
 export const authRoutes: Routes = [
   {
@@ -13,22 +9,22 @@ export const authRoutes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginPage,
+        loadComponent: ()=> import('./pages/login-page/login-page'),
         canActivate: [publicGuard]
       },
       {
         path: 'register',
-        component: RegisterPage,
+        loadComponent: ()=> import('./pages/register-page/register-page'),
         canActivate: [publicGuard]
       },
       {
         path: 'forgot-password',
-        component: ForgotPasswordPage,
+        loadComponent: ()=> import('./pages/forgot-password-page/forgot-password-page'),
         canActivate: [publicGuard]
       },
       {
         path: 'reset-password',
-        component: ResetPasswordPage,
+        loadComponent: ()=> import('./pages/reset-password-page/reset-password-page'),
         canActivate: [publicGuard]
       },
       {

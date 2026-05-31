@@ -13,7 +13,7 @@ import { PasswordModule } from 'primeng/password';
   templateUrl: './reset-password-page.html',
   styleUrl: './reset-password-page.css',
 })
-export class ResetPasswordPage {
+export default class ResetPasswordPage {
 
    private fb = inject(FormBuilder);
    private activatedRoute = inject(ActivatedRoute);

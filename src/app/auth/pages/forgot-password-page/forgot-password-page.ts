@@ -12,7 +12,7 @@ import { MessageModule } from 'primeng/message';
   templateUrl: './forgot-password-page.html',
   styleUrl: './forgot-password-page.css',
 })
-export class ForgotPasswordPage {
+export default class ForgotPasswordPage {
 
   formUtils= FormUtils;
   fb = inject(FormBuilder);

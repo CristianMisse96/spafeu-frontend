@@ -22,7 +22,7 @@ import { MessageModule } from 'primeng/message';
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
 })
-export class RegisterPage {
+export default class RegisterPage {
 
   fb = inject(FormBuilder);
   validadores = inject(ValidadoresService);
