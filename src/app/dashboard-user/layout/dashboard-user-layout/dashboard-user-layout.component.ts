@@ -1,17 +1,17 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { Auth } from '@auth/services/auth';
+import { DashboardSidebarComponent } from '@shared/components/dashboard-sidebar/dashboard-sidebar';
+import { DashboardSidebarNavItem } from '@shared/components/dashboard-sidebar/dashboard-sidebar.model';
+import { DashboardTopbarComponent } from '@shared/components/dashboard-topbar/dashboard-topbar';
 import { EstadoKycEnum } from '@shared/enums/estadokyc.enum';
-import { AvatarModule } from 'primeng/avatar';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
-import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-dashboard-user-layout',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, AvatarModule, ButtonModule, TagModule, TooltipModule],
+  imports: [RouterOutlet, DashboardSidebarComponent, DashboardTopbarComponent],
   templateUrl: './dashboard-user-layout.component.html',
   styleUrl: './dashboard-user-layout.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardUserLayoutComponent {
   authService = inject(Auth);
@@ -20,6 +20,42 @@ export class DashboardUserLayoutComponent {
   router = inject(Router);
 
   sidebarOpen = signal(false);
+  sidebarExpanded = signal(true);
+
+  readonly navItems: DashboardSidebarNavItem[] = [
+    {
+      route: '/dashboard-user/home',
+      icon: 'pi-home',
+      label: 'Dashboard',
+      description: 'Resumen general',
+      exact: true,
+    },
+    {
+      route: '/dashboard-user/excercises',
+      icon: 'pi-bolt',
+      label: 'Rutinas',
+      description: 'Actividad física',
+    },
+    {
+      route: '/dashboard-user/progress',
+      icon: 'pi-chart-line',
+      label: 'Progreso',
+      description: 'Seguimiento',
+    },
+    {
+      route: '/educacion',
+      icon: 'pi-book',
+      label: 'Educación',
+      description: 'Hábitos saludables',
+    },
+    {
+      route: '/comunidad',
+      icon: 'pi-users',
+      label: 'Comunidad',
+      description: 'Retos grupales',
+      badge: 'NUEVO',
+    },
+  ];
 
   currentDate = computed(() => {
     const now = new Date();
@@ -42,6 +78,10 @@ export class DashboardUserLayoutComponent {
 
   closeSidebar(): void {
     this.sidebarOpen.set(false);
+  }
+
+  toggleSidebarExpanded(): void {
+    this.sidebarExpanded.update((v) => !v);
   }
 
   logout(): void {

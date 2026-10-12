@@ -1,0 +1,88 @@
+<aside
+  class="fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto bg-linear-to-b from-indigo-950 via-indigo-900 to-slate-900 shadow-2xl shadow-indigo-950/30 transition-all duration-300 ease-out lg:translate-x-0"
+  [class.w-72]="effectiveExpanded()"
+  [class.w-24]="!effectiveExpanded()"
+  [class.translate-x-0]="mobileOpen()"
+  [class.-translate-x-full]="!mobileOpen()"
+  role="navigation"
+  aria-label="Navegación principal">
+
+  <!-- LOGO -->
+  <div
+    class="flex h-20 shrink-0 items-center border-b border-white/10"
+    [class.px-4]="effectiveExpanded()"
+    [class.px-2]="!effectiveExpanded()"
+    [class.justify-between]="effectiveExpanded()"
+    [class.justify-center]="!effectiveExpanded()">
+    @if (effectiveExpanded()) {
+      <div class="flex items-center gap-3 overflow-hidden">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-amber-400 to-amber-600 text-white shadow-lg shadow-amber-500/25">
+          <span class="text-lg font-bold tracking-tighter">F</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-bold tracking-tight text-white whitespace-nowrap">{{ logoText() }}</span>
+          <span class="text-[11px] text-indigo-200/70 whitespace-nowrap">{{ logoSubtext() }}</span>
+        </div>
+      </div>
+    } @else {
+      <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-amber-400 to-amber-600 text-white shadow-lg shadow-amber-500/25">
+        <span class="text-sm font-bold tracking-tighter">F</span>
+      </div>
+    }
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        class="hidden lg:flex shrink-0 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-all hover:bg-white/10 hover:text-white"
+        [class.h-9]="effectiveExpanded()"
+        [class.w-9]="effectiveExpanded()"
+        [class.h-8]="!effectiveExpanded()"
+        [class.w-8]="!effectiveExpanded()"
+        (click)="toggleExpand.emit()"
+        [attr.aria-label]="effectiveExpanded() ? 'Minimizar menú' : 'Expandir menú'">
+        <i
+          class="pi text-sm"
+          [class.pi-chevron-left]="effectiveExpanded()"
+          [class.pi-chevron-right]="!effectiveExpanded()"
+          aria-hidden="true"></i>
+      </button>
+
+      <button
+        type="button"
+        class="flex lg:hidden h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-all hover:bg-white/10 hover:text-white"
+        (click)="closeMobile.emit()"
+        aria-label="Cerrar menú">
+        <i class="pi pi-times text-sm" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="flex flex-1 flex-col gap-1 p-3">
+    @for (item of items(); track item.route) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="bg-linear-to-r from-indigo-600 to-indigo-700 shadow-lg shadow-indigo-600/20 text-white"
+        [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+        class="group flex items-center gap-3 rounded-xl px-3 py-3 text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white"
+        [class.justify-center]="!effectiveExpanded()"
+        [attr.aria-label]="item.label"
+        [attr.aria-current]="item.exact ? 'page' : null">
+        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 transition-all group-hover:bg-white/10">
+          <i class="pi {{ item.icon }} text-sm transition-colors" aria-hidden="true"></i>
+        </div>
+        @if (effectiveExpanded()) {
+          <div class="flex flex-1 flex-col items-start overflow-hidden">
+            <span class="text-sm font-medium whitespace-nowrap">{{ item.label }}</span>
+            @if (item.description) {
+              <span class="text-[11px] text-indigo-200/50 whitespace-nowrap">{{ item.description }}</span>
+            }
+          </div>
+          @if (item.badge) {
+            <span class="ml-auto flex h-5 items-center rounded-full bg-amber-500 px-2 text-[10px] font-bold text-white whitespace-nowrap">{{ item.badge }}</span>
+          }
+        }
+      </a>
+    }
+  </nav>
+</aside>
