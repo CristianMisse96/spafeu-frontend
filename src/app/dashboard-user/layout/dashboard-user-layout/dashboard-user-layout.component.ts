@@ -43,18 +43,18 @@ export class DashboardUserLayoutComponent {
       description: 'Seguimiento',
     },
     {
-      route: '/educacion',
+      route: '/dashboard-user/educacion',
       icon: 'pi-book',
       label: 'Educación',
       description: 'Hábitos saludables',
     },
-    {
+    /*{
       route: '/comunidad',
       icon: 'pi-users',
       label: 'Comunidad',
       description: 'Retos grupales',
       badge: 'NUEVO',
-    },
+    },*/
   ];
 
   currentDate = computed(() => {

@@ -1,0 +1,141 @@
+<section class="edu-page" aria-labelledby="edu-title">
+  <header class="edu-header">
+    <h1 id="edu-title" class="edu-title">Educación</h1>
+    <p class="edu-subtitle">
+      Infografías sobre actividad física, nutrición y hábitos saludables.
+    </p>
+  </header>
+
+  <div class="edu-carousel-wrapper">
+    <swiper-container
+      #swiperContainer
+      class="edu-swiper"
+      init="false"
+      slides-per-view="1"
+      space-between="24"
+      loop="true"
+      speed="700"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      coverflow-effect-rotate="0"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="180"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="false"
+      breakpoints='{
+        "640": { "slidesPerView": 1, "spaceBetween": 16 },
+        "768": { "slidesPerView": 1.2, "spaceBetween": 24, "centeredSlides": true },
+        "1024": { "slidesPerView": 1.4, "spaceBetween": 32, "centeredSlides": true }
+      }'
+      (slidechange)="onSlideChange($event)">
+      @for (pdf of pdfs(); track pdf.id) {
+        <swiper-slide class="edu-slide">
+          <article class="edu-card">
+            <div class="edu-card-header">
+              <h2 class="edu-card-title">{{ pdf.title }}</h2>
+              <p class="edu-card-description">{{ pdf.description }}</p>
+            </div>
+
+            <div class="edu-pdf-viewer">
+              <iframe
+                [src]="pdf.viewerUrl"
+                [title]="pdf.title"
+                type="application/pdf"
+                loading="lazy">
+              </iframe>
+            </div>
+
+            <div class="edu-card-actions">
+              <a
+                class="edu-button"
+                [href]="pdf.downloadUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="'Abrir ' + pdf.title + ' en una nueva pestaña'">
+                <i class="pi pi-external-link" aria-hidden="true"></i>
+                Abrir PDF
+              </a>
+            </div>
+          </article>
+        </swiper-slide>
+      }
+    </swiper-container>
+
+    <div class="edu-controls">
+      <button
+        type="button"
+        class="edu-control-button edu-control-button--nav"
+        (click)="goToPrevious()"
+        aria-label="Infografía anterior">
+        <i class="pi pi-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div
+        class="edu-dots edu-dots--left"
+        role="tablist"
+        aria-label="Seleccionar primera mitad de infografías">
+        @for (pdf of pdfs(); track pdf.id; let index = $index) {
+          @if (index < halfCount()) {
+            <button
+              type="button"
+              class="edu-dot"
+              role="tab"
+              [class.edu-dot--active]="currentIndex() === index"
+              [attr.aria-selected]="currentIndex() === index"
+              [attr.aria-label]="'Ver ' + pdf.title"
+              (click)="goToSlide(index)">
+            </button>
+          }
+        }
+      </div>
+
+      <button
+        type="button"
+        class="edu-control-button edu-control-button--play"
+        (click)="toggleAutoplay()"
+        [attr.aria-label]="isPlaying() ? 'Pausar carrusel' : 'Reanudar carrusel'">
+        @if (isPlaying()) {
+          <i class="pi pi-pause" aria-hidden="true"></i>
+        } @else {
+          <i class="pi pi-play" aria-hidden="true"></i>
+        }
+      </button>
+
+      <div
+        class="edu-dots edu-dots--right"
+        role="tablist"
+        aria-label="Seleccionar segunda mitad de infografías">
+        @for (pdf of pdfs(); track pdf.id; let index = $index) {
+          @if (index >= halfCount()) {
+            <button
+              type="button"
+              class="edu-dot"
+              role="tab"
+              [class.edu-dot--active]="currentIndex() === index"
+              [attr.aria-selected]="currentIndex() === index"
+              [attr.aria-label]="'Ver ' + pdf.title"
+              (click)="goToSlide(index)">
+            </button>
+          }
+        }
+      </div>
+
+      <button
+        type="button"
+        class="edu-control-button edu-control-button--nav"
+        (click)="goToNext()"
+        aria-label="Infografía siguiente">
+        <i class="pi pi-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="edu-autoplay-status" aria-live="polite">
+      @if (isPlaying()) {
+        <span>Reproducción automática activada</span>
+      } @else {
+        <span>Reproducción automática pausada</span>
+      }
+    </div>
+  </div>
+</section>

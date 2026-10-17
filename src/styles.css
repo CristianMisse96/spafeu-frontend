@@ -3,3 +3,7 @@
 @import "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
 @import 'ngx-toastr/toastr';
+@import 'swiper/css';
+@import 'swiper/css/effect-coverflow';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
