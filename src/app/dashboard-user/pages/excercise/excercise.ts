@@ -1,8 +1,10 @@
-import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from '@auth/services/auth';
 import { ExserciseService } from '@dashboard-user/services/exercise.service';
+import { NivelActividadFisicaEnum, obtenerKeyPorValor } from '@shared/enums/nivel-actividadfisica.enum';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
@@ -10,9 +12,10 @@ import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-excercise',
-  imports: [TagModule, ButtonModule],
+  imports: [TagModule, ButtonModule, NgOptimizedImage],
   templateUrl: './excercise.html',
   styleUrl: './excercise.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class Excercise {
 
@@ -61,6 +64,30 @@ export default class Excercise {
       initialValue: null
     }
   );
+
+  readonly exerciseImageUrl = computed(() => {
+    const exercise = this.exercise();
+    const nivel = this.user()?.nivelActividadFisica;
+    if (!exercise || !nivel) {
+      return null;
+    }
+
+    const nivelKey = this.resolveNivelKey(nivel);
+    if (!nivelKey) {
+      return null;
+    }
+
+    return `/images/protocolo/${nivelKey}/${exercise.id}.jpg`;
+  });
+
+  private resolveNivelKey(nivel: string): string | null {
+    const keys = Object.keys(NivelActividadFisicaEnum) as Array<keyof typeof NivelActividadFisicaEnum>;
+    if (keys.includes(nivel as keyof typeof NivelActividadFisicaEnum)) {
+      return nivel;
+    }
+
+    return obtenerKeyPorValor(nivel) ?? null;
+  }
 
   readonly tiempoTranscurrido = computed(() => {
 
