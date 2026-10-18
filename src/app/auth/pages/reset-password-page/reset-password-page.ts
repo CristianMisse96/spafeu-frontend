@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Auth } from '@auth/services/auth';
 import { FormUtils } from '@utils/forms-utils';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-reset-password-page',
-  imports: [ReactiveFormsModule, PasswordModule, MessageModule],
+  imports: [ReactiveFormsModule, PasswordModule, MessageModule, RouterLink],
   templateUrl: './reset-password-page.html',
   styleUrl: './reset-password-page.css',
 })
