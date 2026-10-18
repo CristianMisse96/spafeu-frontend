@@ -1,0 +1,150 @@
+<!-- ================================= -->
+<!-- RESEND ACTIVATION EMAIL - SPAFEU -->
+<!-- ================================= -->
+
+<main class="relative min-h-screen overflow-hidden bg-slate-950">
+
+  <!-- ================================= -->
+  <!-- BACKGROUND -->
+  <!-- ================================= -->
+
+  <div class="absolute inset-0">
+
+    <img
+      src="/login-bg.jpg"
+      alt=""
+      class="h-full w-full object-cover opacity-20"
+    />
+
+    <div class="absolute inset-0 bg-linear-to-br from-slate-950/95 via-violet-950/90 to-sky-950/90"></div>
+
+    <div class="absolute -top-30 -left-25 h-112.5 w-112.5 rounded-full bg-sky-500/20 blur-3xl"></div>
+
+    <div class="absolute -bottom-30 -right-25 h-125 w-125 rounded-full bg-cyan-400/20 blur-3xl"></div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- CONTENT -->
+  <!-- ================================= -->
+
+  <div class="relative z-10 flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+
+    <!-- ================================= -->
+    <!-- CARD -->
+    <!-- ================================= -->
+
+    <div class="relative w-full max-w-xl overflow-hidden rounded-[40px] border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-2xl sm:p-10 lg:p-12">
+
+      <div class="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-sky-500/10"></div>
+
+      <div class="relative z-10">
+
+        <a routerLink="/home" class="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-sky-300 transition hover:text-white sm:mb-3">
+          <i class="pi pi-arrow-left"></i>
+          Volver
+        </a>
+
+        <!-- Title -->
+        <div class="mt-8 text-center">
+
+          <h1 class="text-4xl font-black tracking-tight text-white sm:text-5xl">
+            Reenviar correo de activación
+          </h1>
+
+          <p class="mx-auto mt-5 max-w-md text-lg leading-relaxed text-slate-300">
+            Ingresa tu correo institucional y te enviaremos un nuevo enlace para activar tu cuenta.
+          </p>
+
+        </div>
+
+        <!-- FORM -->
+        <form class="mt-10 space-y-6" [formGroup]="resendForm" (ngSubmit)="onSubmit()">
+
+          <!-- EMAIL -->
+          <div>
+
+            <label for="email" class="mb-3 block text-sm font-semibold text-slate-200">
+              Correo institucional
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="ejemplo@universidad.edu"
+              formControlName="email"
+              class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-white placeholder:text-slate-400 outline-none backdrop-blur-xl transition focus:border-sky-400 focus:ring-4 focus:ring-sky-400/20"
+              [class.border-red-500]="formUtils.isValidField(resendForm, 'email')"
+            />
+
+            @if (resendForm.controls['email'].errors?.['pattern']) {
+              <p-message severity="error" variant="simple" size="small">
+                El campo no es un formato de correo válido.
+              </p-message>
+            } @else if (formUtils.isValidField(resendForm, 'email')) {
+              <p-message severity="error" variant="simple" size="small">
+                {{ formUtils.getFieldError(resendForm, 'email') }}
+              </p-message>
+            }
+
+          </div>
+
+          <!-- BUTTON -->
+          <button
+            type="submit"
+            class="group w-full rounded-2xl bg-linear-to-r from-sky-500 via-cyan-400 to-violet-500 px-6 py-4 text-lg font-bold text-white shadow-2xl shadow-sky-500/30 transition duration-300 hover:scale-[1.02]"
+          >
+            <span class="flex items-center justify-center">
+              Enviar correo de activación
+              <span class="ml-3 transition group-hover:translate-x-1">→</span>
+            </span>
+          </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="my-8 flex items-center gap-4">
+
+          <div class="h-px flex-1 bg-white/10"></div>
+
+          <span class="text-sm text-slate-400">navegación</span>
+
+          <div class="h-px flex-1 bg-white/10"></div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+
+          <a
+            routerLink="/auth/login"
+            class="inline-flex flex-1 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center text-base font-semibold text-white backdrop-blur-xl transition hover:bg-white/10"
+          >
+            ← Volver al login
+          </a>
+
+          <a
+            routerLink="/auth/register"
+            class="inline-flex flex-1 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-4 text-center text-base font-semibold text-sky-300 transition hover:bg-sky-500/20 hover:text-white"
+          >
+            Crear cuenta
+          </a>
+
+        </div>
+
+        <!-- Bottom text -->
+        <div class="mt-10 text-center">
+
+          <p class="text-sm leading-relaxed text-slate-400">
+            Si no recibes el correo en unos minutos, revisa tu bandeja de spam o intenta nuevamente.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>

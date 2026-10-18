@@ -166,7 +166,7 @@
               </div>
 
               <!-- Remember -->
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between gap-4">
 
                 <label class="flex items-center gap-3 text-sm text-slate-300">
 
@@ -178,9 +178,14 @@
 
                 </label>
 
-                <a routerLink="/auth/forgot-password" class="text-sm text-sky-300 hover:text-white">
-                  Recuperar
-                </a>
+                <div class="flex flex-col items-end gap-1">
+                  <a routerLink="/auth/resend-activation" class="text-sm text-sky-300 hover:text-white">
+                    Activar cuenta
+                  </a>
+                  <a routerLink="/auth/forgot-password" class="text-sm text-sky-300 hover:text-white">
+                    Recuperar cuenta
+                  </a>
+                </div>
 
               </div>
 

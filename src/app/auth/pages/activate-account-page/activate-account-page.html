@@ -1,0 +1,101 @@
+<!-- ================================= -->
+<!-- ACTIVATE ACCOUNT - SPAFEU -->
+<!-- ================================= -->
+
+<main class="relative min-h-screen overflow-hidden bg-slate-950">
+
+  <!-- ================================= -->
+  <!-- BACKGROUND -->
+  <!-- ================================= -->
+
+  <div class="absolute inset-0">
+
+    <img
+      src="/login-bg.jpg"
+      alt=""
+      class="h-full w-full object-cover opacity-20"
+    />
+
+    <div class="absolute inset-0 bg-linear-to-br from-slate-950/95 via-violet-950/90 to-sky-950/90"></div>
+
+    <div class="absolute -top-30 -left-25 h-112.5 w-112.5 rounded-full bg-sky-500/20 blur-3xl"></div>
+
+    <div class="absolute -bottom-30 -right-25 h-125 w-125 rounded-full bg-cyan-400/20 blur-3xl"></div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- CONTENT -->
+  <!-- ================================= -->
+
+  <div class="relative z-10 flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+
+    <!-- ================================= -->
+    <!-- CARD -->
+    <!-- ================================= -->
+
+    <div class="relative w-full max-w-xl overflow-hidden rounded-[40px] border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-2xl sm:p-10 lg:p-12">
+
+      <div class="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-sky-500/10"></div>
+
+      <div class="relative z-10 text-center">
+
+        <a routerLink="/home" class="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-sky-300 transition hover:text-white sm:mb-3">
+          <i class="pi pi-arrow-left"></i>
+          Volver
+        </a>
+
+        @if (isLoading()) {
+          <div class="mt-10 flex flex-col items-center gap-6" role="status" aria-live="polite">
+            <i class="pi pi-spinner pi-spin text-5xl text-sky-400"></i>
+            <p class="text-lg text-slate-200">Activando tu cuenta...</p>
+          </div>
+        }
+
+        @if (isSuccess()) {
+          <div class="mt-10 flex flex-col items-center gap-6" role="status" aria-live="polite">
+            <i class="pi pi-check-circle text-6xl text-green-400"></i>
+            <h1 class="text-4xl font-black text-white">¡Cuenta activada!</h1>
+            <p class="mx-auto max-w-md text-lg leading-relaxed text-slate-300">
+              Tu cuenta ha sido activada exitosamente. Serás redirigido al inicio de sesión en unos segundos.
+            </p>
+            <a
+              routerLink="/auth/login"
+              class="inline-flex items-center justify-center rounded-2xl bg-linear-to-r from-sky-500 via-cyan-400 to-violet-500 px-8 py-4 text-lg font-bold text-white shadow-2xl shadow-sky-500/30 transition duration-300 hover:scale-[1.02]"
+            >
+              Ir al login
+            </a>
+          </div>
+        }
+
+        @if (errorMessage()) {
+          <div class="mt-10 flex flex-col items-center gap-6" role="alert" aria-live="assertive">
+            <i class="pi pi-times-circle text-6xl text-red-400"></i>
+            <h1 class="text-4xl font-black text-white">Enlace inválido</h1>
+            <p class="mx-auto max-w-md text-lg leading-relaxed text-slate-300">
+              {{ errorMessage() }}
+            </p>
+            <div class="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
+              <a
+                routerLink="/auth/resend-activation"
+                class="inline-flex flex-1 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-4 text-center text-base font-semibold text-sky-300 transition hover:bg-sky-500/20 hover:text-white"
+              >
+                Solicitar nuevo correo
+              </a>
+              <a
+                routerLink="/auth/login"
+                class="inline-flex flex-1 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center text-base font-semibold text-white backdrop-blur-xl transition hover:bg-white/10"
+              >
+                Volver al login
+              </a>
+            </div>
+          </div>
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
