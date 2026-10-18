@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '@auth/services/auth';
@@ -18,6 +18,7 @@ import { MessageModule } from 'primeng/message';
             MessageModule],
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RegisterPage {
 
@@ -60,8 +61,8 @@ export default class RegisterPage {
 
       this.authService.register(this.registerForm.value).subscribe({
       next: (resp:any)=>{console.log(resp);
-        const mensaje= resp.mensaje.detail + ' Por favor inicie sesión con sus credenciales.';
-        this.toast.success(mensaje,resp.mensaje.summary,{timeOut:3000});
+        const mensaje = resp.mensaje.detail;
+        this.toast.success(mensaje, resp.mensaje.summary, { timeOut: 3000 });
         this.router.navigateByUrl('/auth/login');
       }
     });

@@ -84,6 +84,20 @@ export class Auth {
       .pipe(catchError(this.messages.errorHandler));
   }
 
+  activateAccount(token: string) {
+    const params = new HttpParams().set('token', token);
+    return this.http
+      .post(`${BASE_URL}/auth/activate-account`, null, { params })
+      .pipe(catchError(this.messages.errorHandler));
+  }
+
+  resendActivationEmail(email: string) {
+    const params = new HttpParams().set('email', email);
+    return this.http
+      .post(`${BASE_URL}/auth/resend-activation-email`, null, { params })
+      .pipe(catchError(this.messages.errorHandler));
+  }
+
   /**
    * Renueva el access token usando el refresh token almacenado en cookie HttpOnly.
    * @returns Observable con el nuevo access token.
