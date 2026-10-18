@@ -19,6 +19,8 @@ export class DashboardUserLayoutComponent {
   estadoKyc = EstadoKycEnum.COMPLETO;
   router = inject(Router);
 
+  showSidebar = computed(() => this.authService.usuario()?.estadoKyc === this.estadoKyc);
+
   sidebarOpen = signal(false);
   sidebarExpanded = signal(true);
 

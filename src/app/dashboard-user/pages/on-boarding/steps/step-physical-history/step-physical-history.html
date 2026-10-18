@@ -7,7 +7,9 @@
         [options]="q.options"
         [formControlName]="q.id.toString()"
         optionLabel="label"
-        optionValue="id">
+        optionValue="id"
+        [fluid]="false"
+        [appendTo]="'body'">
       </p-select>
     </div>
   }
