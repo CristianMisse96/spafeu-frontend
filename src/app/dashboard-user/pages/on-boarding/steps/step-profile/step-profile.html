@@ -1,6 +1,6 @@
 <form
   [formGroup]="parentForm()"
-  class="max-w-4xl mx-auto px-6 py-6 space-y-8">
+  class="max-w-4xl mx-auto px-4 py-4 space-y-6 sm:px-6 sm:py-6 sm:space-y-8">
 
   <!-- Full Name (grande arriba) -->
   <div>
@@ -26,8 +26,8 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <div>
       <label class="block mb-2 font-medium">Campus</label>
-      <p-select class="w-full"
-                [options]="campusList()"
+      <p-select [options]="campusList()"
+                [fluid]="true"
                 formControlName="campusId"
                 optionLabel="name"
                 optionValue="id"
@@ -42,8 +42,8 @@
 
     <div>
       <label class="block mb-2 font-medium">Program</label>
-      <p-select class="w-full"
-                [options]="programList"
+      <p-select [options]="programList"
+                [fluid]="true"
                 formControlName="programId"
                 optionLabel="name"
                 optionValue="id"
@@ -58,8 +58,8 @@
 
     <div>
       <label class="block mb-2 font-medium">Semester</label>
-      <p-select class="w-full"
-                [options]="semesterOptions"
+      <p-select [options]="semesterOptions"
+                [fluid]="true"
                 formControlName="semester"
                 [invalid]="formUtils.isValidField(parentForm(),'semester')" />
 
@@ -78,13 +78,16 @@
     <div>
       <label class="block mb-2 font-medium">Birth Date</label>
       <p-datepicker formControlName="birthDate"
-                    class="w-full" 
-                    [iconDisplay]="'input'" 
-                    [showIcon]="true" 
-                    inputId="icondisplay" 
-                    dateFormat="dd-mm-yy" 
-                    [maxDate]="today" 
-                    placeholder="DD-MM-AAAA" 
+                    [fluid]="true"
+                    [appendTo]="'body'"
+                    [responsiveOptions]="datePickerResponsiveOptions"
+                    panelStyleClass="birth-datepicker-panel"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    inputId="icondisplay"
+                    dateFormat="dd-mm-yy"
+                    [maxDate]="today"
+                    placeholder="DD-MM-AAAA"
                     [invalid]="formUtils.isValidField(parentForm(),'birthDate')" /> 
 
       @if (formUtils.isValidField(parentForm(),'birthDate')) { 
@@ -121,11 +124,11 @@
     <div>
       <label class="block mb-2 font-medium">Peso (Kg)</label>
       <p-inputNumber formControlName="weightKg"
-                     class="w-full" 
-                     mode="decimal" 
-                     [minFractionDigits]=1 
-                     [maxFractionDigits]=2 
-                     [useGrouping]="false" 
+                     [fluid]="true"
+                     mode="decimal"
+                     [minFractionDigits]=1
+                     [maxFractionDigits]=2
+                     [useGrouping]="false"
                      [invalid]="formUtils.isValidField(parentForm(),'weightKg')" /> 
                      
       @if (formUtils.isValidField(parentForm(),'weightKg')) { 
@@ -138,7 +141,7 @@
     <!-- Height -->
     <div>
       <label class="block mb-2 font-medium">Talla (M)</label>
-      <p-inputNumber class="w-full"
+      <p-inputNumber [fluid]="true"
                      mode="decimal"
                      formControlName="heightM"
                      [minFractionDigits]=1
