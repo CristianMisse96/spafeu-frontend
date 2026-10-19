@@ -1,0 +1,21 @@
+:host ::ng-deep .p-card {
+    height: 100%;
+}
+
+:host ::ng-deep .p-card-body {
+    height: 100%;
+}
+
+:host ::ng-deep .p-card-content {
+    height: 100%;
+    padding: 0;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

@@ -1,137 +1,228 @@
-<div class="min-h-screen flex items-center justify-center bg-surface-100 px-4">
-  <div class="w-full max-w-md">
-    <p-card class="shadow-2 border-round-2xl">
-      
-      <div class="text-center mb-6">
-        <h1 class="text-3xl font-bold mb-2">Crear Cuenta</h1>
-        <p class="text-color-secondary">
-          Completa los datos para registrarte
-        </p>
+<!-- ================================= -->
+<!-- REGISTER - SPAFEU -->
+<!-- ================================= -->
+
+<main class="relative min-h-screen overflow-hidden bg-slate-950">
+
+  <!-- ================================= -->
+  <!-- BACKGROUND -->
+  <!-- ================================= -->
+
+  <div class="absolute inset-0 overflow-hidden">
+
+    <!-- Background image -->
+    <img
+      src="/logo.png"
+      alt="Fitness Background"
+      class="h-full w-full object-cover opacity-20"
+    />
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-linear-to-br from-slate-950/95 via-violet-950/90 to-sky-950/90"></div>
+
+    <!-- Glow effects -->
+    <div class="absolute -top-30 -left-25 h-112.5 w-112.5 rounded-full bg-sky-500/20 blur-3xl"></div>
+
+    <div class="absolute -bottom-30 -right-25 h-125 w-125 rounded-full bg-cyan-400/20 blur-3xl"></div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- CONTENT -->
+  <!-- ================================= -->
+
+  <div class="relative z-10 flex min-h-screen items-start justify-center px-4 py-4 sm:items-center sm:px-6 sm:py-8 lg:px-8">
+
+    <!-- ================================= -->
+    <!-- CARD -->
+    <!-- ================================= -->
+
+    <div class="relative w-full max-w-xl overflow-hidden rounded-[40px] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl sm:p-6 lg:p-8">
+
+      <!-- Internal glow -->
+      <div class="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-sky-500/10"></div>
+
+      <!-- CONTENT -->
+      <div class="relative z-10">
+
+        <!-- Back link -->
+        <a routerLink="/home" class="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-sky-300 transition hover:text-white sm:mb-3">
+          <i class="pi pi-arrow-left"></i>
+          Volver
+        </a>
+
+        <!-- Title -->
+        <div class="text-center">
+
+          <h1 class="text-3xl font-black tracking-tight text-white sm:text-4xl">
+            Crear Cuenta
+          </h1>
+
+          <p class="mx-auto mt-1 max-w-md text-sm leading-relaxed text-slate-300 sm:text-base sm:mt-2">
+            Completa los datos para registrarte
+          </p>
+
+        </div>
+
+        <!-- FORM -->
+        <form class="mt-4 space-y-2 sm:mt-5 sm:space-y-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <!-- Email -->
+          <div>
+
+            <label for="email" class="mb-1 block text-sm font-semibold text-slate-200">
+              Correo institucional
+            </label>
+
+            <input
+              pInputText
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="ejemplo@universidad.edu"
+              class="w-full"
+              [class.border-red-500]="formUtils.isValidField(registerForm, 'email')"
+            />
+
+            @if (registerForm.get('email')?.hasError('existeEmail')) {
+              <p-message severity="error" variant="simple" size="small">
+                El correo electrónico ya se encuentra en uso.
+              </p-message>
+            } @else if (registerForm.controls['email'].errors?.['pattern']) {
+              <p-message severity="error" variant="simple" size="small">
+                El campo no es un formato de correo válido.
+              </p-message>
+            } @else if (formUtils.isValidField(registerForm, 'email')) {
+              <p-message severity="error" variant="simple" size="small">
+                {{ formUtils.getFieldError(registerForm, 'email') }}
+              </p-message>
+            }
+
+          </div>
+
+          <!-- Username -->
+          <div>
+
+            <label for="username" class="mb-1 block text-sm font-semibold text-slate-200">
+              Usuario
+            </label>
+
+            <input
+              pInputText
+              id="username"
+              type="text"
+              formControlName="username"
+              placeholder="Tu usuario"
+              class="w-full"
+              [class.border-red-500]="formUtils.isValidField(registerForm, 'username')"
+            />
+
+            @if (registerForm.get('username')?.hasError('existeUsername')) {
+              <p-message severity="error" variant="simple" size="small">
+                El nombre de usuario ya se encuentra en uso.
+              </p-message>
+            } @else if (formUtils.isValidField(registerForm, 'username')) {
+              <p-message severity="error" variant="simple" size="small">
+                {{ formUtils.getFieldError(registerForm, 'username') }}
+              </p-message>
+            }
+
+          </div>
+
+          <!-- Password -->
+          <div>
+
+            <label for="password" class="mb-1 block text-sm font-semibold text-slate-200">
+              Contraseña
+            </label>
+
+            <p-password
+              formControlName="password"
+              inputId="password"
+              [toggleMask]="true"
+              [feedback]="false"
+              class="w-full"
+              [inputStyleClass]="passwordInputClass"
+              placeholder="••••••••"
+            />
+
+            @if (formUtils.isValidField(registerForm, 'password')) {
+              <p-message severity="error" variant="simple" size="small">
+                {{ formUtils.getFieldError(registerForm, 'password') }}
+              </p-message>
+            }
+
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+
+            <label for="password2" class="mb-1 block text-sm font-semibold text-slate-200">
+              Confirmar Contraseña
+            </label>
+
+            <p-password
+              formControlName="password2"
+              inputId="password2"
+              [toggleMask]="true"
+              [feedback]="false"
+              class="w-full"
+              [inputStyleClass]="password2InputClass"
+              placeholder="••••••••"
+            />
+
+            @if (registerForm.errors?.['passwordsNotEquals']) {
+              <p-message severity="error" variant="simple" size="small">
+                Las contraseñas deben de ser iguales
+              </p-message>
+            } @else if (formUtils.isValidField(registerForm, 'password2')) {
+              <p-message severity="error" variant="simple" size="small">
+                {{ formUtils.getFieldError(registerForm, 'password2') }}
+              </p-message>
+            }
+
+          </div>
+
+          <!-- BUTTON -->
+          <button
+            type="submit"
+            aria-label="Registrarse"
+            class="group w-full rounded-2xl bg-linear-to-r from-sky-500 via-cyan-400 to-violet-500 px-6 py-2.5 text-base font-bold text-white shadow-2xl shadow-sky-500/30 transition duration-300 hover:scale-[1.02] sm:py-3 sm:text-lg"
+          >
+
+            <span class="flex items-center justify-center">
+
+              Registrarse
+
+              <span class="ml-3 transition group-hover:translate-x-1">
+                →
+              </span>
+
+            </span>
+
+          </button>
+
+        </form>
+
+        <!-- Login link -->
+        <div class="mt-4 text-center sm:mt-5">
+
+          <p class="text-sm text-slate-300 sm:text-base">
+
+            ¿Ya tienes cuenta?
+
+            <a routerLink="/auth/login" class="font-bold text-sky-300 hover:text-white">
+              Iniciar sesión
+            </a>
+
+          </p>
+
+        </div>
+
       </div>
 
-      <form
-        [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()"
-        class="flex flex-col gap-4"
-      >
+    </div>
 
-        <!-- Email -->
-        <div class="flex flex-col gap-2">
-          <label for="email" class="font-medium">Email</label>
-
-          <input
-            pInputText
-            id="email"
-            type="email"
-            formControlName="email"
-            placeholder="correo@ejemplo.com"
-            class="w-full"
-            [invalid]="formUtils.isValidField(registerForm, 'email')"
-          />
-
-          @if (registerForm.get('email')?.hasError('existeEmail') ) {
-            <p-message severity="error" variant="simple" size="small"> 
-                El correo electrónico ya se encuentra en uso.
-            </p-message> 
-          }@else if(registerForm.controls['email'].errors?.['pattern']){
-            <p-message severity="error" variant="simple" size="small"> 
-                El campo no es un formato de correo valido.
-            </p-message> 
-          }@else if (formUtils.isValidField(registerForm,'email')) {
-             <p-message severity="error" variant="simple" size="small"> 
-                {{formUtils.getFieldError(registerForm,'email')}} 
-            </p-message> 
-          }
-        </div>
-
-        <!-- Username -->
-        <div class="flex flex-col gap-2">
-          <label for="username" class="font-medium">Usuario</label>
-
-          <input
-            pInputText
-            id="username"
-            type="text"
-            formControlName="username"
-            placeholder="Tu usuario"
-            class="w-full"
-            [invalid]="formUtils.isValidField(registerForm, 'username')"
-          />
-
-          @if (registerForm.get('username')?.hasError('existeUsername') ) {
-            <p-message severity="error" variant="simple" size="small"> 
-                El nombre de usuario ya se encuentra en uso.
-            </p-message> 
-          }@else if (formUtils.isValidField(registerForm,'username')) {
-            <p-message severity="error" variant="simple" size="small"> 
-              {{ formUtils.getFieldError(registerForm, "username") }}
-            </p-message> 
-            
-          }
-        </div>
-
-        <!-- Password -->
-        <div class="flex flex-col gap-2">
-          <label for="password" class="font-medium">Contraseña</label>
-
-          <p-password
-            formControlName="password"
-            inputId="password"
-            [toggleMask]="true"
-            [feedback]="false"
-            class="w-full"
-            inputStyleClass="w-full"
-            placeholder="********"
-            [invalid]="formUtils.isValidField(registerForm, 'password')"
-          >
-          </p-password>
-
-          @if (formUtils.isValidField(registerForm,'password')) {
-            <p-message severity="error" variant="simple" size="small"> 
-              {{ formUtils.getFieldError(registerForm, "password") }}
-            </p-message> 
-          }
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="flex flex-col gap-2">
-          <label for="password2" class="font-medium">
-            Confirmar Contraseña
-          </label>
-
-          <p-password
-            formControlName="password2"
-            inputId="password2"
-            [toggleMask]="true"
-            [feedback]="false"
-            class="w-full"
-            inputStyleClass="w-full"
-            placeholder="********"
-          >
-          </p-password>
-
-          @if(registerForm.errors?.['passwordsNotEquals']){
-            <p-message severity="error" variant="simple" size="small"> 
-              Las contraseñas deben de ser iguales
-            </p-message>
-          }@else if (formUtils.isValidField(registerForm,'password2')) {
-            <p-message severity="error" variant="simple" size="small"> 
-              {{ formUtils.getFieldError(registerForm, "password2") }}
-            </p-message>
-          }
-        </div>
-
-        <!-- Button -->
-        <p-button
-          label="Registrarse"
-          icon="pi pi-user-plus"
-          type="submit"
-          styleClass="w-full"
-          [disabled]="registerForm.invalid"
-        >
-        </p-button>
-
-      </form>
-    </p-card>
   </div>
-</div>
+
+</main>

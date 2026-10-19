@@ -28,6 +28,16 @@ export const authRoutes: Routes = [
         canActivate: [publicGuard]
       },
       {
+        path: 'activate-account',
+        loadComponent: () => import('./pages/activate-account-page/activate-account-page'),
+        canActivate: [publicGuard]
+      },
+      {
+        path: 'resend-activation',
+        loadComponent: () => import('./pages/resend-activation-page/resend-activation-page'),
+        canActivate: [publicGuard]
+      },
+      {
         path: '**',
         redirectTo: 'login'
       }

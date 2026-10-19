@@ -12,7 +12,7 @@
   <div class="flex min-h-screen">
 
     <!-- SIDEBAR -->
-    @if (authService.usuario()?.estadoKyc === estadoKyc) {
+    @if (showSidebar()) {
       <app-dashboard-sidebar
         [expanded]="sidebarExpanded()"
         [mobileOpen]="sidebarOpen()"
@@ -24,11 +24,11 @@
     <!-- MAIN -->
     <main
       class="flex-1 min-w-0 transition-all duration-300"
-      [class.lg:ml-72]="sidebarExpanded()"
-      [class.lg:ml-24]="!sidebarExpanded()">
+      [class.lg:ml-72]="showSidebar() && sidebarExpanded()"
+      [class.lg:ml-24]="showSidebar() && !sidebarExpanded()">
 
       <!-- TOPBAR -->
-      @if (authService.usuario()?.estadoKyc === estadoKyc) {
+      @if (showSidebar()) {
         <app-dashboard-topbar
           title="Dashboard"
           [currentDate]="currentDate()"

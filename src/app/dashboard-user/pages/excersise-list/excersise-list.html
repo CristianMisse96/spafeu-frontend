@@ -1,68 +1,91 @@
-<div class="flex flex-column gap-5">
+<div class="flex flex-col gap-8">
 
     @for(group of excercisesGroup(); track group.activityType) {
 
-        <div>
+        <section>
 
-            <div class="flex align-items-center gap-2 mb-4">
+            <div class="flex items-center gap-2 mb-4">
 
-                <i class="pi pi-heart-fill text-primary"></i>
+                <i class="pi pi-heart-fill text-indigo-600 text-xl pulse-animation"></i>
 
-                <h2 class="m-0">
+                <h2 class="m-0 text-xl font-semibold text-slate-800">
                     {{ group.activityType }}
                 </h2>
 
             </div>
 
-            <div class="grid">
+            <div class="
+                flex
+                md:grid md:grid-cols-12
+                gap-4
+                overflow-x-auto
+                md:overflow-visible
+                pb-4
+                md:pb-0
+                snap-x
+                snap-mandatory
+                md:snap-none
+                -mx-4
+                px-4
+                md:mx-0
+                md:px-0
+                scroll-smooth
+                scrollbar-hide">
 
                 @for(exercise of group.exercises; track exercise.id) {
 
-                    <div class="col-12 md:col-6 lg:col-4">
+                    <div class="
+                        flex-shrink-0
+                        w-72
+                        md:w-auto
+                        md:col-span-6
+                        lg:col-span-4
+                        snap-start">
 
                         <p-card
-                            class="h-full">
+                            class="h-full"
+                            [class.opacity-60]="completedIds().has(exercise.id)"
+                            [class.grayscale]="completedIds().has(exercise.id)">
 
-                            <!--<ng-template pTemplate="header">
+                            <div class="flex flex-col h-full">
 
-                                <img
-                                    [src]="exercise.foto"
-                                    class="w-full h-15rem object-cover">
+                                <div class="flex items-start justify-between gap-2 mb-2">
 
-                            </ng-template>-->
+                                    <h3 class="text-lg font-semibold text-slate-900">
+                                        {{ exercise.name }}
+                                    </h3>
 
-                            <h3>
-                                {{ exercise.name }}
-                            </h3>
+                                    @if (completedIds().has(exercise.id)) {
+                                        <i class="pi pi-check-circle text-emerald-500 text-xl"></i>
+                                    }
 
-                            <p class="text-color-secondary">
+                                </div>
 
-                                {{ exercise.descripcionEjercicio }}
+                                <p class="text-slate-600 line-clamp-3 mb-4 flex-grow">
+                                    {{ exercise.descripcionEjercicio }}
+                                </p>
 
-                            </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
 
-                            <div class="flex gap-2 mt-3">
+                                    <p-tag
+                                        [value]="exercise.tipoIntensidad.name">
+                                    </p-tag>
 
-                                <p-tag
-                                    [value]="exercise.tipoIntensidad.name">
-                                </p-tag>
+                                    <p-tag
+                                        severity="info"
+                                        [value]="exercise.duracion.description">
+                                    </p-tag>
 
-                                <p-tag
-                                    severity="info"
-                                    [value]="exercise.duracion.description">
-                                </p-tag>
-
-                            </div>
-
-                            <div class="mt-4">
+                                </div>
 
                                 <button
                                     pButton
-                                    [label]="completedIds().has(exercise.id) ? 'Completado' : 'Iniciar ejercicio'"
+                                    class="w-full mt-auto"
+                                    [disabled]="completedIds().has(exercise.id)"
+                                    [label]="completedIds().has(exercise.id) ? 'Completo' : 'Iniciar ejercicio'"
                                     [severity]="calularInfo(exercise.id)"
                                     [icon]="completedIds().has(exercise.id) ? 'pi pi-check' : 'pi pi-play'"
                                     (click)="iniciarEjercicio(exercise.id)">
-                                    
                                 </button>
 
                             </div>
@@ -75,7 +98,7 @@
 
             </div>
 
-        </div>
+        </section>
 
     }
 

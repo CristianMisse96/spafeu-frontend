@@ -13,9 +13,9 @@ import { AcademicProgram } from '../../interfaces/academic-program.interface';
 
 @Component({
   selector: 'app-step-profile',
-  imports: [ReactiveFormsModule, 
-            MessageModule, 
-            InputTextModule, 
+  imports: [ReactiveFormsModule,
+            MessageModule,
+            InputTextModule,
             SelectModule,
             DatePickerModule,
             RadioButtonModule,
@@ -25,12 +25,16 @@ import { AcademicProgram } from '../../interfaces/academic-program.interface';
   styleUrl: './step-profile.css',
 })
 export class StepProfile {
-   
-   today: Date = new Date();
 
-   parentForm = input.required<FormGroup<any>>();
-   campusList = input.required<Campus[]>();
-   formUtils = FormUtils;
+  today: Date = new Date();
+
+  datePickerResponsiveOptions = [
+    { breakpoint: '640px', numMonths: 1 }
+  ];
+
+  parentForm = input.required<FormGroup<any>>();
+  campusList = input.required<Campus[]>();
+  formUtils = FormUtils;
 
   sexOptions = [
     { label: 'Hombre', value: SexEnum.MALE },
@@ -41,9 +45,9 @@ export class StepProfile {
 
   ngOnInit() {
       this.parentForm().get('campusId')?.valueChanges.subscribe((campusId: number) => {
-   
+
       this.parentForm().get('programId')?.reset();
-    
+
       const selectedCampus = this.campusList().find(c => c.id === campusId);
 
       this.programList = selectedCampus?.academicPrograms || [];

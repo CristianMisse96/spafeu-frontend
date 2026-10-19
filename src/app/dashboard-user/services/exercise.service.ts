@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { NivelActividadFisicaEnum } from '@shared/enums/nivel-actividadfisica.enum';
 import { RespuestaServicio } from '@shared/interfaces/respuesta-servicio.interface';
 import { Exercise } from '@dashboard-user/interfaces/exercise.interface';
+import { ExerciseCompletionResult } from '@dashboard-user/interfaces/exercise-completion-result.interface';
 import { catchError, map } from 'rxjs';
 import { MessagesService } from '@shared/services/messages.service';
 import { Router } from '@angular/router';
@@ -47,7 +48,7 @@ export class ExserciseService {
     }
 
     completeExerciseSession(exerciseId: number) {
-       return this.http.patch<RespuestaServicio<void>>(
+       return this.http.patch<RespuestaServicio<ExerciseCompletionResult>>(
         `${BASE_URL}/exercises/${exerciseId}/complete`,
         null
     )

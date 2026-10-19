@@ -86,7 +86,10 @@
 
           <!-- CONTENT -->
           <div class="relative z-10">
-
+            <a routerLink="/home" class="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-sky-300 transition hover:text-white sm:mb-3">
+              <i class="pi pi-arrow-left"></i>
+              Volver
+            </a>
             <!-- Mobile logo -->
             <div class="mb-10 flex flex-col items-center text-center lg:hidden">
 
@@ -106,7 +109,7 @@
               </h2>
 
               <p class="mt-3 text-slate-300">
-                Ingresa a tu cuenta SPAFEU
+                Ingresa a tu cuenta FIT APP
               </p>
 
             </div>
@@ -118,7 +121,7 @@
               <div>
 
                 <label class="mb-3 block text-sm font-semibold text-slate-200">
-                  Correo institucional
+                  Username/Correo institucional
                 </label>
 
                 <input type="email" 
@@ -163,7 +166,7 @@
               </div>
 
               <!-- Remember -->
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between gap-4">
 
                 <label class="flex items-center gap-3 text-sm text-slate-300">
 
@@ -175,9 +178,14 @@
 
                 </label>
 
-                <a routerLink="/auth/forgot-password" class="text-sm text-sky-300 hover:text-white">
-                  Recuperar
-                </a>
+                <div class="flex flex-col items-end gap-1">
+                  <a routerLink="/auth/resend-activation" class="text-sm text-sky-300 hover:text-white">
+                    Activar cuenta
+                  </a>
+                  <a routerLink="/auth/forgot-password" class="text-sm text-sky-300 hover:text-white">
+                    Recuperar cuenta
+                  </a>
+                </div>
 
               </div>
 

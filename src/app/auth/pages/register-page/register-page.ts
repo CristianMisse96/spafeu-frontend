@@ -1,26 +1,24 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Auth } from '@auth/services/auth';
 import { ValidadoresService } from '@shared/services/validadores.service';
 import { FormUtils } from '@utils/forms-utils';
 import { ToastrService } from 'ngx-toastr';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-register-page',
-  imports: [ReactiveFormsModule, 
-            CardModule, 
-            ButtonModule, 
-            PasswordModule, 
+  imports: [ReactiveFormsModule,
+            RouterLink,
             InputTextModule,
+            PasswordModule,
             MessageModule],
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RegisterPage {
 
@@ -30,7 +28,17 @@ export default class RegisterPage {
   private router = inject(Router);
   formUtils= FormUtils;
   authService = inject(Auth);
-  
+
+  get passwordInputClass(): string {
+    return this.formUtils.isValidField(this.registerForm, 'password') ? 'border-red-500' : '';
+  }
+
+  get password2InputClass(): string {
+    const invalidField = this.formUtils.isValidField(this.registerForm, 'password2');
+    const passwordsNotEqual = !!this.registerForm.errors?.['passwordsNotEquals'];
+    return (invalidField || passwordsNotEqual) ? 'border-red-500' : '';
+  }
+
   registerForm : FormGroup = this.fb.group({
     //name: ['',[Validators.required, Validators.pattern(FormUtils.namePattern)]],
     email: ['',[Validators.required, Validators.pattern(FormUtils.emailPattern)], [this.validadores.existeEmail.bind(this.validadores)]],
@@ -40,7 +48,7 @@ export default class RegisterPage {
   },{
     validators:[
       FormUtils.isFieldOneEqualFieldTwo('password','password2')
-    ] 
+    ]
   });
 
    onSubmit() {
@@ -53,8 +61,8 @@ export default class RegisterPage {
 
       this.authService.register(this.registerForm.value).subscribe({
       next: (resp:any)=>{console.log(resp);
-        const mensaje= resp.mensaje.detail + ' Por favor inicie sesión con sus credenciales.';
-        this.toast.success(mensaje,resp.mensaje.summary,{timeOut:3000});
+        const mensaje = resp.mensaje.detail;
+        this.toast.success(mensaje, resp.mensaje.summary, { timeOut: 3000 });
         this.router.navigateByUrl('/auth/login');
       }
     });

@@ -95,6 +95,11 @@ export default class OnBoarding implements OnInit {
     });
   }
 
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth/login');
+  }
+
   finish() {
     const payload = this.buildPayload();
     this.userHealthProfileService.register(payload)

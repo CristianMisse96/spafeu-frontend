@@ -8,8 +8,7 @@ import { definePreset } from '@primeuix/themes';
 import Material from '@primeuix/themes/material';
 import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
 import { provideToastr } from 'ngx-toastr';
-import { TokenInterceptor } from '@shared/interceptors/token.interceptor';
-import { AuthErrorInterceptor } from '@shared/interceptors/auth-error.interceptor';
+import { authInterceptor } from '@shared/interceptors/auth.interceptor';
 
 const MyPreset = definePreset(Material, {
   semantic: {
@@ -34,7 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withFetch(),
-                      withInterceptors([TokenInterceptor, AuthErrorInterceptor])),
+                      withInterceptors([authInterceptor])),
     providePrimeNG({
       ripple: true,
       inputStyle: 'filled',

@@ -36,6 +36,10 @@ export const dashboardUserRoutes: Routes = [
                 loadComponent: () => import('./pages/seguimiento/seguimiento')
             },
             {
+                path: 'educacion',
+                loadComponent: () => import('./pages/educacion/educacion')
+            },
+            {
                 path: '**',
                 redirectTo: 'home'
             },

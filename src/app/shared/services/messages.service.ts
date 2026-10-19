@@ -11,8 +11,15 @@ export class MessagesService {
 
   constructor(private router: Router) {}
 
-    /** Metodo para crear dialog con error de conexión con el servicio
-     * @param error variable que muestra que exite un error de conexión
+    /**
+     * Muestra un diálogo de error genérico para fallos de conexión o del servidor.
+     *
+     * Los códigos 401 y 403 NO se muestran aquí porque son gestionados de forma
+     * específica por el interceptor de autenticación (`auth.interceptor.ts`):
+     * - 401: intenta renovar el token; si falla, cierra sesión y redirige al login.
+     * - 403: muestra advertencia y redirige al inicio del usuario.
+     *
+     * @param error Error HTTP recibido desde el backend.
      */
     errorHandler(error: HttpErrorResponse) {
         const TITULO_SIN_CONEXION = '¡Sin conexión!';
@@ -31,7 +38,7 @@ export class MessagesService {
                     '</h3><p class="text-dialog">' +
                     MENSAJE_SIN_CONEXION +
                     '</p>',
-                imageUrl: 'assets/images/icono-sin-conexion.svg',
+                imageUrl: '/images/icono-sin-conexion.svg',
                 confirmButtonText: 'Aceptar',
                 showCloseButton: true
             });

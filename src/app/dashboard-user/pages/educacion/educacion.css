@@ -1,0 +1,288 @@
+.edu-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+.edu-header {
+  text-align: center;
+}
+
+.edu-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.edu-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.edu-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.edu-swiper {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.edu-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.edu-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.edu-card-header {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  color: #ffffff;
+}
+
+.edu-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.edu-card-description {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #e0e7ff;
+  line-height: 1.4;
+}
+
+.edu-pdf-viewer {
+  position: relative;
+  width: 100%;
+  height: 16rem;
+  background: #f8fafc;
+}
+
+.edu-pdf-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.edu-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+}
+
+.edu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4f46e5;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.edu-button:hover {
+  background: #4338ca;
+}
+
+.edu-button:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.edu-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.edu-control-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 9999px;
+  color: #ffffff;
+  background: #4f46e5;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.edu-control-button:hover {
+  background: #4338ca;
+  transform: scale(1.05);
+}
+
+.edu-control-button:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.edu-control-button--play {
+  background: #f59e0b;
+  color: #1e293b;
+}
+
+.edu-control-button--play:hover {
+  background: #d97706;
+}
+
+.edu-control-button--nav {
+  margin: 0 0.5rem;
+}
+
+.edu-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.edu-dots--left {
+  margin-right: 0.25rem;
+}
+
+.edu-dots--right {
+  margin-left: 0.25rem;
+}
+
+.edu-autoplay-status {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.edu-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.edu-dot:hover {
+  background: #94a3b8;
+}
+
+.edu-dot:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.edu-dot--active {
+  background: #4f46e5;
+  transform: scale(1.25);
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .edu-page {
+    padding: 1.5rem;
+  }
+
+  .edu-title {
+    font-size: 2rem;
+  }
+
+  .edu-subtitle {
+    font-size: 1rem;
+  }
+
+  .edu-pdf-viewer {
+    height: 22rem;
+  }
+
+  .edu-card-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .edu-page {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .edu-title {
+    font-size: 2.25rem;
+  }
+
+  .edu-pdf-viewer {
+    height: 28rem;
+  }
+
+  .edu-card-header {
+    padding: 1.5rem;
+  }
+
+  .edu-card-actions {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .edu-control-button {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .edu-page {
+    padding: 2.5rem;
+  }
+
+  .edu-title {
+    font-size: 2.5rem;
+  }
+
+  .edu-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .edu-pdf-viewer {
+    height: 34rem;
+  }
+}

@@ -1,0 +1,35 @@
+/* Responsive datepicker panel on mobile */
+@media (max-width: 640px) {
+  ::ng-deep .birth-datepicker-panel {
+    max-width: calc(100vw - 2rem) !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-calendar {
+    width: 100% !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-day-view {
+    width: 100% !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-day-view th,
+  ::ng-deep .birth-datepicker-panel .p-datepicker-day-view td {
+    padding: 0.125rem !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-day-view th span,
+  ::ng-deep .birth-datepicker-panel .p-datepicker-day-view td span {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-title {
+    font-size: 0.875rem !important;
+  }
+
+  ::ng-deep .birth-datepicker-panel .p-datepicker-header button {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+}
